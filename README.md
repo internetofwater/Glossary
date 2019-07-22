@@ -1,12 +1,10 @@
-## This page is about the Glossary. Woohoo
+## This page is about the Glossary. 
 
-You can use the [editor on GitHub](https://github.com/internetofwater/Glossary/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+The ontology is hosted here. It is managed with WebProtege.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Dereferencing
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The ontology can be dereferenced so an html version is displayed to browsers and the ontology rdf file is downloaded by machines.
 
 ```markdown
 Syntax highlighted code block
