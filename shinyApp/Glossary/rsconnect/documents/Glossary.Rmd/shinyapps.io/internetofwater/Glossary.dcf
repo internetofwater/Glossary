@@ -1,0 +1,12 @@
+name: Glossary
+title: Glossary
+username:
+account: internetofwater
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1047555
+bundleId: 2261631
+url: https://internetofwater.shinyapps.io/Glossary/
+when: 1563995125.1674
+asMultiple: FALSE
+asStatic: FALSE

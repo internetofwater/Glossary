@@ -1,0 +1,118 @@
+---
+title: "Glossary"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    logo: iow_logo_horizontal_rgb.png
+    theme: readable
+runtime: shiny
+---
+<script>
+$('.navbar-logo').wrap('<a href="http://internetofwater.org">');
+</script>
+
+```{r global, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(shiny)
+library(DT)
+library(urltools)
+
+downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {
+     tags$a(id = outputId, class = paste("btn btn-default shiny-download-link", 
+        class), href = "", target = "_blank", download = NA, 
+        icon("download"), label, ...)
+ }
+
+data<-read_csv("test.csv")
+data$Concept <- paste0('<a href=', data$Source,'>',data$Term,'</a>')
+
+
+```
+
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+checkboxGroupInput("filter", label = "Choose Domain of Terms",
+            choices = unique(data$Class), selected = unique(data$Class)[1])
+
+
+```
+
+Below, click to download the entire Internet of Water Glossary in RDF in turtle format, all terms in csv, or just your selected terms in csv.
+```{r}
+actionButton("x1", label="All terms (.ttl)", icon=icon("download"),onclick ="location.href='https://internetofwater.github.io/Glossary/glossary.ttl';")
+downloadButtonRmd("x2", label="All terms (.csv)")
+downloadButtonRmd("x3", label="Filtered terms (.csv)")
+
+# output$x1 <- downloadHandler(
+#   filename = function() {
+#      paste('IoW-Glossary-', Sys.Date(), '.ttl', sep='')
+#    },
+#    content = function(file) {
+#      file.link("https://internetofwater.github.io/Glossary/glossary.ttl", file)
+#    }
+#  )
+
+output$x2 <- downloadHandler(
+  filename = function() {
+     paste('IoW-allTerms-', Sys.Date(), '.csv', sep='')
+   },
+   content = function(con) {
+     write.csv(data, con)
+   }
+ )
+
+output$x3 <- downloadHandler(
+  filename = function() {
+     paste('IoW-filteredTerms-', Sys.Date(), '.csv', sep='')
+   },
+   content = function(con) {
+     write.csv(d()[c("Class","Term","Definition","Source")], con)
+   }
+ )
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Table of terms
+
+```{r}
+d <- reactive({
+  filter(data, Class %in% input$filter)
+})
+
+d2 <- reactive({d()[c("Concept","Definition")]})
+
+DT::renderDataTable({
+  DT::datatable(d2(), options = list(
+    bPaginate = FALSE, scrollY = '60vh'), rownames=FALSE, escape=FALSE
+  )
+})
+
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Navigate the web of knowledge
+
+Here will be an interactive network graph of terms maybe
+
+```{r}
+print("wowza")
+```
+
+### Submit a new term!
+
+Here will be a form to submit a term, its definition, and a source for its definition, that will be emailed to me.
+
+```{r}
+print("hello")
+```
