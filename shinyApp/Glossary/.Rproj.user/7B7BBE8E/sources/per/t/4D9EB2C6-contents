@@ -96,7 +96,7 @@ d <- reactive({
 
 DT::renderDataTable({
   DT::datatable(d()[c("Concept","Definition")], options = list(
-    bPaginate = FALSE, scrollY = '75vh'), rownames=FALSE, escape=FALSE
+    bPaginate = FALSE, scrollY = '60vh'), rownames=FALSE, escape=FALSE
   )
 })
 
