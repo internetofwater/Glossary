@@ -1,5 +1,5 @@
 ---
-title: "Glossary"
+title: GLOSSARY
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -12,12 +12,30 @@ runtime: shiny
 $('.navbar-logo').wrap('<a href="http://internetofwater.org">');
 </script>
 
+<style type="text/css">
+
+.chart-title {  /* chart_title  */
+   font-size: 24px;
+   font-family: Calibri;
+
+}
+
+.navbar-inverse .nav-collapse .nav > li > a {
+ font-size:40px;
+}
+</style>
+
+
+
 ```{r global, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
 library(shiny)
 library(DT)
 library(urltools)
+library(rdflib)
+library(shinyWidgets)
+library(igraph)
 
 downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {
      tags$a(id = outputId, class = paste("btn btn-default shiny-download-link", 
@@ -25,81 +43,218 @@ downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...) 
         icon("download"), label, ...)
  }
 
-data<-read_csv("test.csv")
-data$Concept <- paste0('<a href=', data$Source,' target="_blank" rel="noopener"','>',data$Term,'</a>')
+## big table
+g<-rdf_parse("glossary.ttl",format="turtle")
+q<-'PREFIX g: <http://purl.org/iow/Glossary#>
+PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
+SELECT ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme
+WHERE {
+   ?uri a g:Terms .
+    ?uri skosxl:prefLabel ?l .
+    ?l   skosxl:literalForm ?Term .
+
+    ?uri skos:inScheme ?v .
+    ?v skosxl:prefLabel ?vl .
+    ?vl skosxl:literalForm ?Vocabulary .
+
+    ?v skos:note ?voclink .
+    ?v skos:scopeNote ?o .
+    ?o skosxl:altLabel ?ol .
+    ?ol skosxl:literalForm ?Organization .
+    ?uri skos:definition ?Definition .
+
+  OPTIONAL{ ?t a g:Themes .
+   ?uri skos:broader ?t .
+         ?t skosxl:prefLabel ?tl .
+        ?tl skosxl:literalForm ?Theme .}
+
+
+}'
+
+data<-rdf_query(g,q)
+
+synparse<-'PREFIX g: <http://purl.org/iow/Glossary#>
+PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?s ?o
+WHERE {
+  ?s a g:Terms .
+  ?s skos:exactMatch ?o .
+
+}'
+
+syn<-rdf_query(g,synparse)
+
+relparse<-'PREFIX g: <http://purl.org/iow/Glossary#>
+PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT ?s ?o
+WHERE {
+  ?s a g:Terms .
+  ?s skos:related ?o .
+
+}'
+
+rel<-rdf_query(g,relparse)
+
+# 
+# t<-'PREFIX g: <http://purl.org/iow/Glossary#>
+# PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
+# PREFIX dct: <http://purl.org/dc/terms/>
+# PREFIX owl: <http://www.w3.org/2002/07/owl#>
+# PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+# PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+# PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+# PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+# PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+# PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+# PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+# PREFIX dc: <http://purl.org/dc/elements/1.1/>
+# 
+# SELECT ?uri ?t 
+# WHERE {
+#    ?t a g:Themes.
+#    ?uri skos:broader ?t
+# }'
+# 
+# system.time(th<-rdf_query(g,t))
+# data<-read_csv("test.csv")
+data$Vocabulary <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Vocabulary,'</a>')
+
+
+## Synonym graph
+syn_graph<-graph_from_edgelist(as.matrix(syn),directed=FALSE)
+syn_groups<-data.frame(components(syn_graph)$membership)%>%tibble::rownames_to_column("uri")
+colnames(syn_groups)[2]<-"group"
+
+## Related graph
+rel_graph<-graph_from_edgelist(as.matrix(rel),directed=FALSE)
+rel_groups<-data.frame(components(rel_graph)$membership)%>%tibble::rownames_to_column("uri")
+colnames(rel_groups)[2]<-"group"
 
 ```
 
 
-Column {.sidebar}
------------------------------------------------------------------------
+<!-- Column {.sidebar} -->
+<!-- ----------------------------------------------------------------------- -->
 
-### Thing 1
-```{r}
-checkboxGroupInput("filter", label = "Choose Domain of Terms",
-            choices = unique(data$Class), selected = unique(data$Class)[1])
+<!-- #### Thematic filter -->
+<!-- ```{r} -->
 
 
-```
+<!-- ``` -->
 
-### Thing 2
+<!-- ### En -->
 
-Below, click to download the entire Internet of Water Glossary in RDF in turtle format, all terms in csv, or just your selected terms in csv.
-```{r}
-actionButton("x1", label="All terms (.ttl)", icon=icon("download"),onclick ="location.href='https://internetofwater.github.io/Glossary/glossary.ttl';")
-downloadButtonRmd("x2", label="All terms (.csv)")
-downloadButtonRmd("x3", label="Filtered terms (.csv)")
+<!-- Below, click to download the entire Internet of Water Glossary in RDF in turtle format, all terms in csv, or just your selected terms in csv.  -->
+<!-- ```{r} -->
+<!-- actionButton("x1", label="All terms (.ttl)", icon=icon("download"),onclick ="location.href='https://internetofwater.github.io/Glossary/glossary.ttl';") -->
+<!-- downloadButtonRmd("x2", label="All terms (.csv)") -->
+<!-- downloadButtonRmd("x3", label="Filtered terms (.csv)") -->
 
-# output$x1 <- downloadHandler(
-#   filename = function() {
-#      paste('IoW-Glossary-', Sys.Date(), '.ttl', sep='')
-#    },
-#    content = function(file) {
-#      file.link("https://internetofwater.github.io/Glossary/glossary.ttl", file)
-#    }
-#  )
+<!-- # output$x1 <- downloadHandler( -->
+<!-- #   filename = function() { -->
+<!-- #      paste('IoW-Glossary-', Sys.Date(), '.ttl', sep='') -->
+<!-- #    }, -->
+<!-- #    content = function(file) { -->
+<!-- #      file.link("https://internetofwater.github.io/Glossary/glossary.ttl", file) -->
+<!-- #    } -->
+<!-- #  ) -->
 
-output$x2 <- downloadHandler(
-  filename = function() {
-     paste('IoW-allTerms-', Sys.Date(), '.csv', sep='')
-   },
-   content = function(con) {
-     write.csv(data, con)
-   }
- )
+<!-- output$x2 <- downloadHandler( -->
+<!--   filename = function() { -->
+<!--      paste('IoW-allTerms-', Sys.Date(), '.csv', sep='') -->
+<!--    }, -->
+<!--    content = function(con) { -->
+<!--      write.csv(data, con) -->
+<!--    } -->
+<!--  ) -->
 
-output$x3 <- downloadHandler(
-  filename = function() {
-     paste('IoW-filteredTerms-', Sys.Date(), '.csv', sep='')
-   },
-   content = function(con) {
-     write.csv(d()[c("Class","Term","Definition","Source")], con)
-   }
- )
+<!-- output$x3 <- downloadHandler( -->
+<!--   filename = function() { -->
+<!--      paste('IoW-filteredTerms-', Sys.Date(), '.csv', sep='') -->
+<!--    }, -->
+<!--    content = function(con) { -->
+<!--      write.csv(d()[c("Class","Term","Definition","Source")], con) -->
+<!--    } -->
+<!--  ) -->
 
-```
+<!-- ``` -->
 
 
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Table of terms
+### Table of terms: Click rows to view synonyms and related terms on the right
 
 ```{r}
+ch<-unique(data[order(data$Theme),]$Theme)
+ch<-ch[which(ch!="Beneficial Use")]
+
+fluidRow(column(1,pickerInput(
+   inputId = "filter",
+   label = "Filter by Theme(s)", 
+    choices = ch,
+   selected= ch,
+   multiple=TRUE, width=300, options = list(
+      `actions-box` = TRUE)
+),offset=1),
+column(1,pickerInput(
+   inputId = "filter2",
+   label = "Filter by Organizations(s)", 
+    choices = unique(data[order(data$Organization),]$Organization),
+   selected=unique(data[order(data$Organization),]$Organization),
+   multiple=TRUE, width=300, options = list(
+      `actions-box` = TRUE)
+),offset=3))
+
+
 d <- reactive({
-  filter(data, Class %in% input$filter)
+  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%arrange(Term)%>%distinct(uri,.keep_all=T)
 })
 
 #d2 <- reactive({d()[c("Concept","Definition")]})
 
-DT::renderDataTable({
-  DT::datatable(d()[c("Concept","Definition")], options = list(
-    bPaginate = FALSE, scrollY = '75vh'), rownames=FALSE, escape=FALSE
+output$table = DT::renderDataTable({
+  DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,3,4,6), visible = FALSE)),
+    dom='Bfti', buttons=c('csv','excel','copy'),scrollY='60vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons')
   )
 })
 
+DT::dataTableOutput('table')
+#, scrollY = '65vh')
 ```
 
 
@@ -107,18 +262,60 @@ DT::renderDataTable({
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Navigate the web of knowledge
+### Synonyms of selected term
 
-Here will be an interactive network graph of terms maybe
 
 ```{r}
-print("wowza")
+ s = reactive({as.character(d()[input$table_rows_selected,"uri"])})
+ synonym_group=reactive({as.numeric(syn_groups$group[which(syn_groups$uri==s())])})
+ syn_uris<-reactive({syn_groups$uri[which(syn_groups$group==synonym_group())]})
+ syn_d<-reactive({data%<>%filter(uri %in% syn_uris())%>%distinct(uri,.keep_all=T)})
+# 
+# 
+#  output$x4 = renderPrint({
+#     s2 = as.character(syn_uris())
+#     if (length(s2)) {
+#       cat('These rows were selected:\n\n')
+#       print(s2, sep = ', ')
+#     }
+#  })
+# verbatimTextOutput('x4')
+
+ output$syntable = DT::renderDataTable({
+   DT::datatable(syn_d()[c("Term","Definition","Vocabulary")], extensions = c('Buttons'),options = list(
+     dom='Bfti', buttons=c('csv','excel','copy'),scrollY='30vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single"
+   )
+ })
+
+DT::dataTableOutput('syntable')
+
 ```
 
-### Submit a new term!
+### Terms related to selected term
 
-Here will be a form to submit a term, its definition, and a source for its definition, that will be emailed to me.
 
 ```{r}
-print("hello")
+r = reactive({as.character(d()[input$table_rows_selected,"uri"])})
+related_group=reactive({as.numeric(syn_groups$group[which(rel_groups$uri==r())])})
+ rel_uris<-reactive({rel_groups$uri[which(rel_groups$group==related_group())]})
+ rel_d<-reactive({data%<>%filter(uri %in% rel_uris())%>%distinct(uri,.keep_all=T)})
+# 
+# 
+#  output$x4 = renderPrint({
+#     s2 = as.character(syn_uris())
+#     if (length(s2)) {
+#       cat('These rows were selected:\n\n')
+#       print(s2, sep = ', ')
+#     }
+#  })
+# verbatimTextOutput('x4')
+
+ output$reltable = DT::renderDataTable({
+   DT::datatable(rel_d()[c("Term","Definition","Vocabulary")], extensions = c('Buttons'),options = list(
+     dom='Bfti', buttons=c('csv','excel','copy'),scrollY='30vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single"
+   )
+ })
+
+DT::dataTableOutput('reltable')
+
 ```
