@@ -15,10 +15,13 @@ $('.navbar-logo').wrap('<a href="http://internetofwater.org">');
 <style type="text/css">
 
 .chart-title {  /* chart_title  */
-   font-size: 24px;
-   font-family: Calibri;
+   font-size: 20px;
+   font-family: "Quicksand",Sans-serif;
+   color: #022949;
+   font-weight: bold
 
 }
+
 
 .navbar-inverse .nav-collapse .nav > li > a {
  font-size:40px;
@@ -127,7 +130,6 @@ WHERE {
 }'
 
 rel<-rdf_query(g,relparse)
-
 # 
 # t<-'PREFIX g: <http://purl.org/iow/Glossary#>
 # PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
@@ -151,7 +153,7 @@ rel<-rdf_query(g,relparse)
 # system.time(th<-rdf_query(g,t))
 # data<-read_csv("test.csv")
 data$Vocabulary <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Vocabulary,'</a>')
-
+data<-data[c("uri","Term","Definition","Vocabulary","voclink","Organization","Theme")]
 
 ## Synonym graph
 syn_graph<-graph_from_edgelist(as.matrix(syn),directed=FALSE)
@@ -217,15 +219,23 @@ colnames(rel_groups)[2]<-"group"
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Table of terms: Click rows to view synonyms and related terms on the right
+### Main Table of Terms
+Filter by Theme and/or Organization. Click rows to view synonyms and related terms on the right.
 
 ```{r}
+
 ch<-unique(data[order(data$Theme),]$Theme)
 ch<-ch[which(ch!="Beneficial Use")]
+ch<-c(ch,"Other")
+data$Theme[which(is.na(data$Theme))]<-"Other"
+d <- reactive({
+  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%arrange(Term)%>%distinct(uri,.keep_all=T)
+})
+
 
 fluidRow(column(1,pickerInput(
    inputId = "filter",
-   label = "Filter by Theme(s)", 
+   label = "Theme(s)",
     choices = ch,
    selected= ch,
    multiple=TRUE, width=300, options = list(
@@ -233,7 +243,7 @@ fluidRow(column(1,pickerInput(
 ),offset=1),
 column(1,pickerInput(
    inputId = "filter2",
-   label = "Filter by Organizations(s)", 
+   label = "Organizations(s)",
     choices = unique(data[order(data$Organization),]$Organization),
    selected=unique(data[order(data$Organization),]$Organization),
    multiple=TRUE, width=300, options = list(
@@ -241,20 +251,21 @@ column(1,pickerInput(
 ),offset=3))
 
 
-d <- reactive({
-  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%arrange(Term)%>%distinct(uri,.keep_all=T)
-})
+
 
 #d2 <- reactive({d()[c("Concept","Definition")]})
 
 output$table = DT::renderDataTable({
-  DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,3,4,6), visible = FALSE)),
-    dom='Bfti', buttons=c('csv','excel','copy'),scrollY='60vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons')
+  DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
+    dom='Bti', buttons=c('csv','excel','copy'),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
 })
 
 DT::dataTableOutput('table')
+
 #, scrollY = '65vh')
+
+
 ```
 
 
@@ -282,8 +293,8 @@ Column {data-width=350}
 # verbatimTextOutput('x4')
 
  output$syntable = DT::renderDataTable({
-   DT::datatable(syn_d()[c("Term","Definition","Vocabulary")], extensions = c('Buttons'),options = list(
-     dom='Bfti', buttons=c('csv','excel','copy'),scrollY='30vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(syn_d()[c("Term","Vocabulary","Definition")], extensions = c('Buttons','Responsive'),options = list(
+     dom='Bt', buttons=c('csv','excel','copy'),"pageLength" = 5000,scrollY='35vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
@@ -296,7 +307,7 @@ DT::dataTableOutput('syntable')
 
 ```{r}
 r = reactive({as.character(d()[input$table_rows_selected,"uri"])})
-related_group=reactive({as.numeric(syn_groups$group[which(rel_groups$uri==r())])})
+related_group=reactive({as.numeric(rel_groups$group[which(rel_groups$uri==r())])})
  rel_uris<-reactive({rel_groups$uri[which(rel_groups$group==related_group())]})
  rel_d<-reactive({data%<>%filter(uri %in% rel_uris())%>%distinct(uri,.keep_all=T)})
 # 
@@ -311,8 +322,8 @@ related_group=reactive({as.numeric(syn_groups$group[which(rel_groups$uri==r())])
 # verbatimTextOutput('x4')
 
  output$reltable = DT::renderDataTable({
-   DT::datatable(rel_d()[c("Term","Definition","Vocabulary")], extensions = c('Buttons'),options = list(
-     dom='Bfti', buttons=c('csv','excel','copy'),scrollY='30vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(rel_d()[c("Term","Vocabulary","Definition")], extensions = c('Buttons','Responsive'),options = list(
+     dom='Bt', buttons=c('csv','excel','copy'),scrollY='35vh',"pageLength" = 5000), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
