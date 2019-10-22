@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:doap="http://usefulinc.com/ns/doap#"
+  xmlns:schema="http://schema.org/"
+  xmlns:dcat="http://www.w3.org/ns/dcat#"
+  xmlns:omv="http://omv.ontoware.org/2005/05/ontology#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/node/20114">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Standard"/>
+    <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
+    <rdf:type rdf:resource="http://schema.org/CreativeWork"/>
+    <rdf:type rdf:resource="http://usefulinc.com/ns/doap#Project"/>
+    <content:encoded>METEOTERM is the WMO terminology database. It contains specialized terminology in six languages: English, Arabic, Chinese, French, Russian and Spanish. It includes the International Meteorological Vocabulary, the International Glossary of Hydrology, and terms from related sciences that appear in WMO documents.</content:encoded>
+    <dc:description>METEOTERM is the WMO terminology database. It contains specialized terminology in six languages: English, Arabic, Chinese, French, Russian and Spanish. It includes the International Meteorological Vocabulary, the International Glossary of Hydrology, and terms from related sciences that appear in WMO documents.</dc:description>
+    <doap:description>METEOTERM is the WMO terminology database. It contains specialized terminology in six languages: English, Arabic, Chinese, French, Russian and Spanish. It includes the International Meteorological Vocabulary, the International Glossary of Hydrology, and terms from related sciences that appear in WMO documents.</doap:description>
+    <schema:description>METEOTERM is the WMO terminology database. It contains specialized terminology in six languages: English, Arabic, Chinese, French, Russian and Spanish. It includes the International Meteorological Vocabulary, the International Glossary of Hydrology, and terms from related sciences that appear in WMO documents.</schema:description>
+    <dc:title>WMO METEOTERM</dc:title>
+    <dc:title>WMO METEOTERM</dc:title>
+    <doap:name>WMO METEOTERM</doap:name>
+    <schema:name>WMO METEOTERM</schema:name>
+    <schema:name>WMO METEOTERM</schema:name>
+    <dc:publisher rdf:resource="https://vest.agrisemantics.org/_:a-dcpublisher-foafname"/>
+    <doap:vendor rdf:resource="https://vest.agrisemantics.org/_:b-doapvendor"/>
+    <schema:publisher rdf:resource="https://vest.agrisemantics.org/_:c-schemapublisher-schemaname"/>
+    <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1970</dc:issued>
+    <schema:dateCreated rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1970</schema:dateCreated>
+    <dc:type rdf:resource="https://vest.agrisemantics.org/taxonomy_term/482"/>
+    <dc:type rdf:resource="https://vest.agrisemantics.org/taxonomy_term/482"/>
+    <dc:type rdf:resource="https://vest.agrisemantics.org/taxonomy_term/489"/>
+    <dc:subject rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <dc:subject rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <dc:subject rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7638"/>
+    <doap:category rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <doap:category rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <doap:category rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7638"/>
+    <dcat:theme rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <dcat:theme rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <dcat:theme rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7638"/>
+    <schema:about rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <schema:about rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <schema:about rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7638"/>
+    <omv:hasDomain rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <omv:hasDomain rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7639"/>
+    <omv:hasDomain rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7638"/>
+    <dc:source rdf:resource="https://vest.agrisemantics.org/node/18384"/>
+    <dc:source rdf:resource="https://vest.agrisemantics.org/node/18384"/>
+    <dc:contributor rdf:resource="https://vest.agrisemantics.org/_:d-dccontributor-foafmbox"/>
+    <schema:contributor rdf:resource="https://vest.agrisemantics.org/_:e-schemacontributor-schemaemail"/>
+    <dc:format rdf:resource="https://vest.agrisemantics.org/taxonomy_term/17"/>
+    <dc:format rdf:resource="https://vest.agrisemantics.org/taxonomy_term/17"/>
+    <dcat:mediaType rdf:resource="https://vest.agrisemantics.org/taxonomy_term/17"/>
+    <dcat:mediaType rdf:resource="https://vest.agrisemantics.org/taxonomy_term/17"/>
+    <dc:coverage rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7623"/>
+    <dc:coverage rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7623"/>
+    <dc:coverage rdf:resource="https://vest.agrisemantics.org/taxonomy_term/7629"/>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-06-07T13:43:19+02:00</dc:date>
+    <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-06-07T13:43:19+02:00</dc:created>
+    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-06-07T13:43:19+02:00</dc:modified>
+    <sioc:num_replies rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</sioc:num_replies>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/_:a-dcpublisher-foafname">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    <foaf:name>World Meteorological Organization</foaf:name>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/_:b-doapvendor">
+    <rdfs:label>World Meteorological Organization</rdfs:label>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/_:c-schemapublisher-schemaname">
+    <rdf:type rdf:resource="http://schema.org/Agent"/>
+    <schema:name>World Meteorological Organization</schema:name>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/_:d-dccontributor-foafmbox">
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <foaf:mbox>lsu@wmo.int</foaf:mbox>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="https://vest.agrisemantics.org/_:e-schemacontributor-schemaemail">
+    <rdf:type rdf:resource="http://schema.org/Agent"/>
+    <schema:email>lsu@wmo.int</schema:email>
+  </rdf:Description>
+
+</rdf:RDF>
