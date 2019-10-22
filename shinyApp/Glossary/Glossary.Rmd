@@ -235,19 +235,19 @@ d <- reactive({
 
 fluidRow(column(1,pickerInput(
    inputId = "filter",
-   label = "Theme(s)",
+   #label = "Theme(s)",
     choices = ch,
    selected= ch,
    multiple=TRUE, width=300, options = list(
-      `actions-box` = TRUE)
+      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Theme(s)")
 ),offset=1),
 column(1,pickerInput(
    inputId = "filter2",
-   label = "Organizations(s)",
+ #  label = "Organizations(s)",
     choices = unique(data[order(data$Organization),]$Organization),
    selected=unique(data[order(data$Organization),]$Organization),
    multiple=TRUE, width=300, options = list(
-      `actions-box` = TRUE)
+      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Organization(s)")
 ),offset=3))
 
 
