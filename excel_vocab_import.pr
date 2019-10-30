@@ -1,7 +1,8 @@
-prefix : <http://purl.org/iow/Glossary#>
+prefix : <http://purl.org/iow/Glossary/>
 prefix grddl: <http://www.w3.org/2003/g/data-view#>
+prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
-prefix skosxl: <http://www.w3.org/2008/05/skos-xl#>
+prefix gn: <http://www.geonames.org/ontology#>
 prefix coda: <http://art.uniroma2.it/coda/contracts/>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix fn: <http://www.w3.org/2005/xpath-functions#>
@@ -10,44 +11,39 @@ prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 prefix dct: <http://purl.org/dc/terms/>
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix sesame: <http://www.openrdf.org/schema/sesame#>
+prefix luc: <http://www.ontotext.com/owlim/lucene#>
 prefix dc: <http://purl.org/dc/elements/1.1/>
 
 rule it.uniroma2.art.Sheet2RDFAnnotation id:row {
 	nodes = {
 		@Memoized
-		subject uri(coda:randIdGen('concept')) col0_Term/value  .
-		col0_Term_lit_value literal@en col0_Term/value .
-		@Memoized
-		col0_Term_value uri(coda:randIdGen('xLabel', {lexicalForm = $col0_Term_lit_value})) col0_Term/value .
-		col1_Abbreviation_lit_value literal@en col1_Abbreviation/value .
-		@Memoized
-		col1_Abbreviation_value uri(coda:randIdGen('xLabel', {lexicalForm = $col1_Abbreviation_lit_value})) col1_Abbreviation/value .
-		col2_Definition_value literal@en col2_Definition/value .
-		col3_Theme1_value uri col3_Theme1/value .
-		col4_Theme2_value uri col4_Theme2/value .
-		col5_Theme3_value uri col5_Theme3/value .
-		col6_Theme4_value uri col6_Theme4/value .
-		col7_Theme5_value uri col7_Theme5/value .
-		col8_Comments_value literal col8_Comments/value .
+		subject uri(coda:randIdGen('concept')) col_0/value .
+		Term literal@en col_0/value .
+		Abbr literal@en col_1/value .
+		Def literal@en col_2/value .
+		Theme1 uri col_3/value .
+		Theme2 uri col_4/value .
+		Theme3 uri col_5/value .
+		Theme4 uri col_6/value .
+		Theme5 uri col_7/value .
+		
 	}
 	graph = {
-		$subject rdf:type :Terms .
 		$subject rdf:type skos:Concept .
-		$subject skos:inScheme :epa-abg .
-		$subject skos:topConceptOf: :epa-abg .
-		OPTIONAL { $subject skosxl:prefLabel $col0_Term_value .
-			$col0_Term_value rdf:type skosxl:Label .
-			$col0_Term_value skosxl:literalForm $col0_Term_lit_value . }
-		OPTIONAL { $subject skosxl:altLabel $col1_Abbreviation_value .
-			$col1_Abbreviation_value rdf:type skosxl:Label .
-			$col1_Abbreviation_value skosxl:literalForm $col1_Abbreviation_lit_value . }
-		OPTIONAL { $subject skos:definition $col2_Definition_value . }
-		OPTIONAL { $subject skos:broader $col3_Theme1_value .
-			$col3_Theme1_value rdf:type skos:Concept . }
-		OPTIONAL { $subject skos:broader $col4_Theme2_value . }
-		OPTIONAL { $subject skos:broader $col5_Theme3_value . }
-		OPTIONAL { $subject skos:broader $col6_Theme4_value . }
-		OPTIONAL { $subject skos:broader $col7_Theme5_value . }
-		OPTIONAL { $subject rdfs:comment $col8_Comments_value . }
+		$subject skos:inScheme :usgs-wut .
+		$subject skos:topConceptOf :usgs-wut .
+		OPTIONAL {$Theme1 rdf:type skos:Collection .}
+		OPTIONAL {$Theme2 rdf:type skos:Collection .}
+		OPTIONAL {$Theme3 rdf:type skos:Collection .}
+		OPTIONAL {$Theme4 rdf:type skos:Collection .}
+		OPTIONAL {$Theme5 rdf:type skos:Collection .}
+		OPTIONAL{$subject skos:altLabel $Abbr .}
+		$subject skos:prefLabel $Term .
+		$subject skos:definition $Def .
+		OPTIONAL{$Theme1 skos:member $subject .}
+		OPTIONAL{$Theme2 skos:member $subject .}
+		OPTIONAL{$Theme3 skos:member $subject .}
+		OPTIONAL{$Theme4 skos:member $subject .}
+		OPTIONAL{$Theme5 skos:member $subject .}
 	}
 }
