@@ -26,7 +26,7 @@ rule it.uniroma2.art.Sheet2RDFAnnotation id:row {
 		Theme3 uri col_5/value .
 		Theme4 uri col_6/value .
 		Theme5 uri col_7/value .
-		
+		Comments literal@en col_8/ value .
 	}
 	graph = {
 		$subject rdf:type skos:Concept .
@@ -45,5 +45,6 @@ rule it.uniroma2.art.Sheet2RDFAnnotation id:row {
 		OPTIONAL{$Theme3 skos:member $subject .}
 		OPTIONAL{$Theme4 skos:member $subject .}
 		OPTIONAL{$Theme5 skos:member $subject .}
+		OPTIONAL{$subject rdfs:comment $Comments .}
 	}
 }
