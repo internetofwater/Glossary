@@ -48,44 +48,24 @@ downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...) 
 
 ## big table
 g<-rdf_parse("glossary.ttl",format="turtle")
-q<-'PREFIX g: <http://purl.org/iow/Glossary#>
-PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
-PREFIX dct: <http://purl.org/dc/terms/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
+endpoint<-"http://35.238.222.96:7200/repositories/Glossary_core"
+q<-'PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://purl.org/iow/Glossary/>
 
-SELECT ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme
-WHERE {
-   ?uri a g:Terms .
-    ?uri skosxl:prefLabel ?l .
-    ?l   skosxl:literalForm ?Term .
-
-    ?uri skos:inScheme ?v .
-    ?v skosxl:prefLabel ?vl .
-    ?vl skosxl:literalForm ?Vocabulary .
-
-    ?v skos:note ?voclink .
-    ?v skos:scopeNote ?o .
-    ?o skosxl:altLabel ?ol .
-    ?ol skosxl:literalForm ?Organization .
+select ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme  WHERE { 
+	?uri a skos:Concept .
+    ?uri skos:prefLabel ?Term .
     ?uri skos:definition ?Definition .
-
-  OPTIONAL{ ?t a g:Themes .
-   ?uri skos:broader ?t .
-         ?t skosxl:prefLabel ?tl .
-        ?tl skosxl:literalForm ?Theme .}
-
-
+    ?uri skos:inScheme ?voc .
+    ?voc skos:note ?voclink .
+    ?voc skos:prefLabel ?Vocabulary .
+    ?voc skos:scopeNote ?Org .
+    ?Org skos:prefLabel ?Organization .
+    ?Th skos:member ?uri .
+    ?Th skos:prefLabel ?Theme
 }'
 
-data<-rdf_query(g,q)
+data<-SPARQL(endpoint,q,format="csv")$results
 
 synparse<-'PREFIX g: <http://purl.org/iow/Glossary#>
 PREFIX grddl: <http://www.w3.org/2003/g/data-view#>
