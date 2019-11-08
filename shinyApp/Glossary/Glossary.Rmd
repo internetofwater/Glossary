@@ -90,7 +90,7 @@ Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Main Table of Terms
-Filter by Theme and/or Organization. Click rows to view synonyms and related terms on the right.
+<h5>Filter by Theme and/or Organization. Click rows to view synonyms and related terms on the right.</h5>
 
 ```{r}
 
@@ -178,7 +178,7 @@ Column {data-width=650}
 
 ### Browse Terms
 
-Step 1: Select term to for which to identify synonyms
+<h5>Step 1: Select term to for which to identify synonyms</h5>
 
 ```{r}
 fluidRow(column(1,pickerInput(
@@ -195,7 +195,7 @@ options = list(  size = 10, `live-search` = TRUE)
 selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
 ```
 
-Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1. The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.
+<h5>Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1. The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.</h5>
 ```{r}
 sel_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
 PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
@@ -218,7 +218,7 @@ sel_uris<-reactive({SPARQL("http://35.238.222.96:7200/repositories/Synonym_searc
 
  output$seltable = DT::renderDataTable({
    DT::datatable(sel_uris(),options = list(
-     dom='ti',"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="multiple"
+     dom='ti',"pageLength" = 5000,scrollY='55vh',buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit')))), rownames=FALSE, escape=FALSE, selection="multiple"
    )
  })
 
@@ -231,18 +231,19 @@ Under construction. There will be three columns. In column one you select the te
 
 Column {data-width=350}
 -----------------------------------------------------------------------
+### Review proposed synoynms
 
-### Submit Synonym Suggestions
+<h5>Step 3. Review and submit synonym suggestions</h5>
 
 
 ```{r}
 
 #print(reactive({input$seltable_rows_selected}))
-sel_syn = reactive({sel_uris()[input$seltable_rows_selected,]})
+sel_syn = reactive({sel_uris()[c(1,input$seltable_rows_selected),]})
 
  output$selsyn = DT::renderDataTable({
    DT::datatable(sel_syn()[c("Term","Definition","Vocabulary")], extensions = c('Buttons','Responsive'),options = list(
-     dom='Bt', buttons=c('csv'),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+     dom='Bt', buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
