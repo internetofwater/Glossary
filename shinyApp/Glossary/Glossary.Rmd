@@ -70,6 +70,8 @@ select ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme  WHERE {
 data<-SPARQL(endpoint,q,format="csv")$results
 data[] <- lapply(data, as.character)
 
+Terms<-distinct(data[c("uri","Term","Vocabulary")])%>%arrange(Term)
+Terms$Term<-paste0(Terms$Term," (",Terms$Vocabulary,")")
 data$Vocabulary <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Vocabulary,'</a>')
 data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
 data<-data[c("uri","Term","Definition","Vocabulary","voclink","Organization","Theme")]
@@ -124,7 +126,7 @@ column(1,pickerInput(
 
 output$table = DT::renderDataTable({
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
-    dom='Bti', buttons=c('csv','excel','copy'),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
+    dom='Bti', buttons = list(list(extend = 'csv', filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
 })
 
@@ -155,83 +157,76 @@ select ?uri where{
  syn_d<-reactive({data<-data%>%filter(uri %in% syn_uris())})
 
 
-#  output$x4 = renderPrint({
-#     s2 = as.character(syn_uris())
-#     if (length(s2)) {
-#       cat('These rows were selected:\n\n')
-#       print(s2, sep = ', ')
-#     }
-#  })
-# verbatimTextOutput('x4')
-
  output$syntable = DT::renderDataTable({
-   DT::datatable(syn_d()[c("Term","Vocabulary","Definition")], extensions = c('Buttons','Responsive'),options = list(
-     dom='Bt', buttons=c('csv','excel','copy'),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
+     dom='Bt', buttons = list(list(extend = 'csv', filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
 DT::dataTableOutput('syntable')
-# 
-# iframe(width = "560", height = "315",
-# url_link = s())
+
 
 ```
 
 Help Identify Synonyms
 =====================================  
 
+
+
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Browse Terms
-Under construction. There will be three columns. In column one you select the term you want to identify synonyms for. In column two there is a list of the 100 closest terms to the selected term according to the similarity of the text in the definitions ([see here for description of method](http://text2vec.org/similarity.html)) The user can select any number of these terms. In column three is the table of the selected terms. Upon review, the the user fills out their name and contact information, and the results are sent to a google sheet where synonym proposals can be reviewed by IoW and/or WaDE staff.
 
+Step 1: Select term to for which to identify synonyms
 
 ```{r}
-# # 
-# # ch<-unique(data[order(data$Theme),]$Theme)
-# # ch<-c(ch,"Other")
-# # data$Theme[which(is.na(data$Theme))]<-"Other"
-# d2 <- reactive({
-#   data%<>%filter(Theme %in% input$filter3 & Organization %in% input$filter4  )%>%arrange(Term)%>%distinct(uri,.keep_all=T)
-# })
-# 
-# 
-# fluidRow(column(1,pickerInput(
-#    inputId = "filter3",
-#    #label = "Theme(s)",
-#     choices = ch,
-#    selected= ch,
-#    multiple=TRUE, width=300, options = list(
-#       `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Theme(s)")
-# ),offset=1),
-# column(1,pickerInput(
-#    inputId = "filter4",
-#  #  label = "Organizations(s)",
-#     choices = unique(data[order(data$Organization),]$Organization),
-#    selected=unique(data[order(data$Organization),]$Organization),
-#    multiple=TRUE, width=300, options = list(
-#       `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Organization(s)")
-# ),offset=3))
-# # 
-# # 
-# # 
-# # 
-# #d2 <- reactive({d()[c("Concept","Definition")]})
-# 
-# output$table2 = DT::renderDataTable({
-#   DT::datatable(d2(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
-#     dom='Bti', buttons=c('csv','excel','copy'),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
-#   )
-# })
-# 
-# DT::dataTableOutput('table2')
+fluidRow(column(1,pickerInput(
+   inputId = "search",
+  # label = "Search Terms (with source vocabulary)", 
+   width=600,
+    choices = Terms$Term,
+  selected=NULL,
+options = list(  size = 10, `live-search` = TRUE)
+)
 
-#, scrollY = '65vh')
+,offset=1))
 
+selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
+```
+
+Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1. The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.
+```{r}
+sel_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
+PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
+PREFIX pubo: <http://ontology.ontotext.com/publishing#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?Term ?Definition ?Vocabulary ?score {
+    ?search a inst:definition_text_similarity ;
+        :searchDocumentID <',selected_uri(), '>;
+        :searchParameters "-numsearchresults 50";
+        :documentResult ?result .
+    ?result :value ?documentID ;
+            :score ?score.
+    ?documentID skos:prefLabel ?Term .
+    ?documentID skos:definition ?Definition .
+    ?documentID skos:inScheme ?voc .
+    ?voc skos:prefLabel ?Vocabulary .
+}')})
+sel_uris<-reactive({SPARQL("http://35.238.222.96:7200/repositories/Synonym_search",sel_parse(),format="csv")$result%>%mutate(score=round(score,2))})
+
+ output$seltable = DT::renderDataTable({
+   DT::datatable(sel_uris(),options = list(
+     dom='ti',"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="multiple"
+   )
+ })
+
+DT::dataTableOutput('seltable')
 
 ```
 
+Under construction. There will be three columns. In column one you select the term you want to identify synonyms for. In column two there is a list of the 100 closest terms to the selected term according to the similarity of the text in the definitions ([see here for description of method](http://text2vec.org/similarity.html)) The user can select any number of these terms. In column three is the table of the selected terms. Upon review, the the user fills out their name and contact information, and the results are sent to a google sheet where synonym proposals can be reviewed by IoW and/or WaDE staff.
 
 
 Column {data-width=350}
@@ -241,36 +236,20 @@ Column {data-width=350}
 
 
 ```{r}
-#  s = reactive({as.character(d()[input$table_rows_selected,"uri"])})
-#  synparse<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-# PREFIX : <http://purl.org/iow/Glossary/>
-# select ?uri where{
-#     <',s(), '> skos:exactMatch ?uri
-# }')})
-#  syn_uris<-reactive({SPARQL(endpoint,synparse(),format="csv")$result$uri})
-# 
-#  syn_d<-reactive({data<-data%>%filter(uri %in% syn_uris())})
-# 
-# 
-# #  output$x4 = renderPrint({
-# #     s2 = as.character(syn_uris())
-# #     if (length(s2)) {
-# #       cat('These rows were selected:\n\n')
-# #       print(s2, sep = ', ')
-# #     }
-# #  })
-# # verbatimTextOutput('x4')
-# 
-#  output$syntable = DT::renderDataTable({
-#    DT::datatable(syn_d()[c("Term","Vocabulary","Definition")], extensions = c('Buttons','Responsive'),options = list(
-#      dom='Bt', buttons=c('csv','excel','copy'),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
-#    )
-#  })
-# 
-# DT::dataTableOutput('syntable')
-# # 
-# # iframe(width = "560", height = "315",
-# # url_link = s())
+
+#print(reactive({input$seltable_rows_selected}))
+sel_syn = reactive({sel_uris()[input$seltable_rows_selected,]})
+
+ output$selsyn = DT::renderDataTable({
+   DT::datatable(sel_syn()[c("Term","Definition","Vocabulary")], extensions = c('Buttons','Responsive'),options = list(
+     dom='Bt', buttons=c('csv'),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+   )
+ })
+
+DT::dataTableOutput('selsyn')
+#
+# iframe(width = "560", height = "315",
+# url_link = s())
 
 ```
 
