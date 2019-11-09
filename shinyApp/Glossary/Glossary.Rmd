@@ -30,7 +30,7 @@ $('.navbar-logo').wrap('<a href="http://internetofwater.org">');
 <!-- } -->
 
 .navbar-nav li a{
-  background-color: #e0e2e1;
+  background-color: #a1c6d5;
 
   }
 
@@ -67,7 +67,10 @@ library(urltools)
 library(shinyWidgets)
 #library(igraph)
 library(SPARQL)
-library(shinyLP)
+library(googledrive)
+drive_auth_configure(api_key = "AIzaSyABmEVEPLtZkb2mziBaCc37pYFE5dHsDUU")
+drive_auth(path="alien-craft-256317-ec852c98b4a0.json")
+
 
 downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {
      tags$a(id = outputId, class = paste("btn btn-default shiny-download-link", 
@@ -203,9 +206,11 @@ Help Identify Synonyms
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Browse Terms
+### Propose Synonyms
 
-<h5>Step 1: Select term to for which to identify synonyms</h5>
+A number of vocabularies of different organizations are rerpresented in this glossary. We need help identifying which terms have synonymous definitions across these vocabularies.
+
+<h5>Step 1: Search and select concepts for which to identify synonyms</h5>
 
 ```{r}
 fluidRow(column(1,pickerInput(
@@ -222,30 +227,54 @@ options = list(  size = 10, `live-search` = TRUE)
 selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
 ```
 
-<h5>Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.
+<h5>Step 2. Click all rows corresponding to concepts you believe are synonymous with the concepts selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected concept, as well as all other concepts in the glossary associated with the same term (i.e. homonyms).
 ```{r}
+
+endpoint_sim<-"http://35.238.222.96:7200/repositories/Synonym_search"
+
 sel_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
 PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
 PREFIX pubo: <http://ontology.ontotext.com/publishing#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
-SELECT ?Term ?Definition ?Vocabulary ?score {
+SELECT ?uri ?Term ?Definition ?Vocabulary ?score {
     ?search a inst:definition_text_similarity ;
         :searchDocumentID <',selected_uri(), '>;
         :searchParameters "-numsearchresults 50";
         :documentResult ?result .
-    ?result :value ?documentID ;
+    ?result :value ?uri ;
             :score ?score.
-    ?documentID skos:prefLabel ?Term .
-    ?documentID skos:definition ?Definition .
-    ?documentID skos:inScheme ?voc .
+    ?uri skos:prefLabel ?Term .
+    ?uri skos:definition ?Definition .
+    ?uri skos:inScheme ?voc .
     ?voc skos:prefLabel ?Vocabulary .
 }')})
-sel_uris<-reactive({SPARQL("http://35.238.222.96:7200/repositories/Synonym_search",sel_parse(),format="csv")$result%>%mutate(score=round(score,2))})
+#sel_uris<-reactive({SPARQL(endpoint_sim,sel_parse(),format="csv")$result%>%mutate(score=round(score,2))})
+
+hom_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
+PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
+PREFIX pubo: <http://ontology.ontotext.com/publishing#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?uri ?Term ?Definition ?Vocabulary ?score {
+    ?search a inst:term_similarity ;
+        :searchDocumentID <',selected_uri(), '>;
+        :searchParameters "-numsearchresults 100";
+        :documentResult ?result .
+ ?result :value ?uri ;
+            :score ?score.
+    ?uri skos:prefLabel ?Term .
+    ?uri skos:definition ?Definition .
+    ?uri skos:inScheme ?voc .
+    ?voc skos:prefLabel ?Vocabulary .
+    FILTER(?score >= 0.5)
+}')})
+#hom_uris<-reactive({SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%mutate(score=round(score,2))})
+
+uris<-reactive({bind_rows(SPARQL(endpoint_sim,sel_parse(),format="csv")$result%>%mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")),SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")))%>%distinct(uri,.keep_all=TRUE)%>%arrange(-score)})
 
  output$seltable = DT::renderDataTable({
-   DT::datatable(sel_uris(),options = list(
-     dom='ti',"pageLength" = 5000,scrollY='55vh',buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit')))), rownames=FALSE, escape=FALSE, selection="multiple"
+   DT::datatable(uris(),options = list(columnDefs = list(list(targets = c(0,3), visible = FALSE)),dom='ti',ordering=F,"pageLength" = 5000,scrollY='55vh',buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit')))), rownames=FALSE, escape=FALSE, selection="multiple"
    )
  })
 
@@ -257,7 +286,7 @@ DT::dataTableOutput('seltable')
 
 Column {data-width=350}
 -----------------------------------------------------------------------
-### Review proposed synoynms
+### Review synoynms
 
 <h5>Step 3. Review and submit synonym suggestions</h5>
 
@@ -265,21 +294,33 @@ Column {data-width=350}
 ```{r}
 
 #print(reactive({input$seltable_rows_selected}))
-sel_syn = reactive({distinct(sel_uris()[c(1,input$seltable_rows_selected),])})
+sel_syn = reactive({distinct(uris()[c(1,input$seltable_rows_selected),])})
 
  output$selsyn = DT::renderDataTable({
-   DT::datatable(sel_syn()[c("Term","Definition","Vocabulary")], extensions = c('Buttons','Responsive'),options = list(
-     dom='Bt', buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(sel_syn(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,3,4), visible = FALSE)),
+     dom='it', buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit'))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
 DT::dataTableOutput('selsyn')
 #
-# iframe(width = "560", height = "315",
-# url_link = s())
+library(shinyLP)
+
 
 ```
 
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### Submit proposed synoynms
+
+<h5>Step 4. Submit synonym suggestions</h5>
+
+
+```{r}
+
+print(drive_ls())
+```
 
 
 Submit Your Vocabulary

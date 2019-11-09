@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "alien-craft-256317",
+  "private_key_id": "ec852c98b4a060bbfb4071f9711a473d54dd71a5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQC44SAmMkPFqSo7\nxzXJR5Cmz502olrh6A0/cY15qRI2MDpj3WNk8zUI/mElzc9LD69ZiVjuRxO0u2iI\nW4VDGUuptFo9lm1rHvqQ0dli6lOjfZEZzxqG7ByQ3yRQGFKgtvW4msm8UQVIgOmH\nMOnV+B85QwWMwkWmNbPHbFVfcJLGsf7CrS5iFoIG2lrJtk1xaykpBb8Kq+7wxUW+\nT+Q3H16m62DF0ZxbP40GBuiBYOdjyPnCsgBgGeX/F2gu7VxzOPGBYIG7bicjnQDL\n2ifbdOU49gi5FMI36eGElRMuBZiEIk0uFJ80d3i7F/nFjBIMeZHLxe+zBNn+fPjo\n6xCloj/bAgMBAAECgf86QWCKqKFc/Junj8i4Tn9GENAjvFo8KjgCcHAj5c0sm1sg\nHKKKghg0Ep6J9aVcAZU/TAgPDQEonI+pEoLrTGKLFvQDHrixCGdBOt6aTJFjnYLF\n9HxnXKmjp1cfOzV4xC3+qBzpOfPFj4QGariZXkB4dVCftJeTHVjeKJoTeLrHNhqD\nNeMigyVduOCfXOnF7LEg+21M+BLlLiIoLT9/g9lwnvJBLiV2gKJPXjp+ikPjJTZ5\n39703TWwaiZRr4hlHB47T7sQYMGhFKJi3LvwCp7/AwNyfLhSuZlIutfDAgxYXZt0\nc2Nzp28AZBigVeqBOsj4lNb+XO1gmis21UonRCECgYEA8hBRK0+n2DEmA9xbMWpW\nrewwPL978GYHX9wsZdmeO/YYd5P7KGrB0qWGJ4bZA8DKsHN5Ik6MOfbKe/z20sek\nyb20EHJqikdyG9PUG+Sa58uCB9F70EFf0UTNnpN53U55BLQ3F8tUdKzTwLD8wReS\nUeoQwVkZJgpVG48HfvDWKxMCgYEAw4X9pwA9HHf5YocKEhM7NDEsmsjfd5FXMgla\nRkXs/c8RKADGXttkCDHzaI5OeH7IBLFTRTdrSxH0kx9xt/W0YNzBuAcVG8eHJiHR\n1Ih9PdZJqLRKIisT1PsIo7RoXg5D4WBK/BVufK+d1IeNmFbSOwN0MdDQczDjfJyG\n/rUmKRkCgYEA2DG0nS8+pHt5DXewxxjHo/zQNGF9a39k1LwLt0e+6KTqw1oatsVq\nqR2HDSSGDLETFrd7mCV5XofJ3yVWuXjv9/MDsLDP8QLQqoPt7J+nrqD3WM5DfAP3\ndSuzTg8/h2X/9jCTCCBlJPP7CB3LERZha+HW5ykRqgUOcFe1hS3KypsCgYAwtD7U\nC74tSkFn5qV+jSXRQXKP9/uaaCzlPOks2hxHuP3YDiFb3aCUXgT5BYHMiCBA8v8A\nHebvI0DeKRYFsgHFoxfqRHFgoxoqSIBhRcKU1b0xdf+FdV+STRoA1V6uFzWXfYoQ\nMzJ7gq95Em8WBIKHyrt18UMLfqEcGE2UQwGHeQKBgFkUDpSYLcg0qCkOcZK+s+Es\niO8a2tXiO0uHvmJnncw+1xwAvlGfPnqjKWyuzbjZIBAmYvgNDDXEAyZONXyYvY4n\n1vnd3EzQAvb9irjHZxToDZm17TRxawRIMU7mxKbX0HMnn5D8dSlGbPy1pv3syGLX\npdgsE3FtbdKlfpaijkjz\n-----END PRIVATE KEY-----\n",
+  "client_email": "glossary-googledrive@alien-craft-256317.iam.gserviceaccount.com",
+  "client_id": "107129421996047369788",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/glossary-googledrive%40alien-craft-256317.iam.gserviceaccount.com"
+}
