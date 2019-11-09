@@ -16,11 +16,38 @@ $('.navbar-logo').wrap('<a href="http://internetofwater.org">');
 
 .chart-title {  /* chart_title  */
    font-size: 20px;
-   font-family: "Quicksand",Sans-serif;
-   color: #022949;
-   font-weight: bold
+   font-family: "Arial",Sans-serif;
+   color: #022949
 
 }
+
+                  
+<!-- .navbar a { -->
+<!--   color: white; -->
+<!--   text-align: center; -->
+<!--   text-decoration: none; -->
+<!--   background-color: inherit; -->
+<!-- } -->
+
+.navbar-nav li a{
+  background-color: #e0e2e1;
+
+  }
+
+<!-- .navbar-nav li a:focus{ -->
+<!--   background-color: #a1c6d5; -->
+
+<!--   } -->
+
+<!-- .navbar-nav li a:active{ -->
+<!--   background-color: #a1c6d5; -->
+
+<!--   } -->
+
+<!-- .navbar-nav li a:visited{ -->
+<!--   background-color: #a1c6d5; -->
+
+<!--   } -->
 
 
 .navbar-inverse .nav-collapse .nav > li > a {
@@ -195,7 +222,7 @@ options = list(  size = 10, `live-search` = TRUE)
 selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
 ```
 
-<h5>Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1. The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.</h5>
+<h5>Step 2. Click all rows corresponding to terms you believe are synonymous with the term selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected term.
 ```{r}
 sel_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
 PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
@@ -226,7 +253,6 @@ DT::dataTableOutput('seltable')
 
 ```
 
-Under construction. There will be three columns. In column one you select the term you want to identify synonyms for. In column two there is a list of the 100 closest terms to the selected term according to the similarity of the text in the definitions ([see here for description of method](http://text2vec.org/similarity.html)) The user can select any number of these terms. In column three is the table of the selected terms. Upon review, the the user fills out their name and contact information, and the results are sent to a google sheet where synonym proposals can be reviewed by IoW and/or WaDE staff.
 
 
 Column {data-width=350}
@@ -239,7 +265,7 @@ Column {data-width=350}
 ```{r}
 
 #print(reactive({input$seltable_rows_selected}))
-sel_syn = reactive({sel_uris()[c(1,input$seltable_rows_selected),]})
+sel_syn = reactive({distinct(sel_uris()[c(1,input$seltable_rows_selected),])})
 
  output$selsyn = DT::renderDataTable({
    DT::datatable(sel_syn()[c("Term","Definition","Vocabulary")], extensions = c('Buttons','Responsive'),options = list(
@@ -264,8 +290,8 @@ Column
 
 ### Submit your vocabulary
 
-We are in the process of collecting vocabularies in use by public water resources and quality agencies, NGOs, and private-sector organizations across the country. If you did not see your organization's vocabulary/ies represented in our Main Term Browser tab, please consider contributing a vocabulary to our Glossary! 
+<p style="font-size: 18px">We are in the process of collecting vocabularies in use by public water resources and quality agencies, NGOs, and private-sector organizations across the country. If you did not see your organization's vocabulary/ies represented in our Main Term Browser tab, please consider contributing a vocabulary to our Glossary! </p>
 
 
-[Click here to contribute](https://ee.kobotoolbox.org/i/::BQ2kodoV)
+<p style="font-size: 18px">[Click here to contribute](https://ee.kobotoolbox.org/i/::BQ2kodoV)</p>
 
