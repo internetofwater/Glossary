@@ -315,11 +315,39 @@ Column {data-width=350}
 ### Submit proposed synoynms
 
 <h5>Step 4. Submit synonym suggestions</h5>
-
+Once you have reviewed your choices of synonyms, please provide your name and email address and what organization you represent. Then, click the blue button below to submit!
 
 ```{r}
 
-print(drive_ls())
+#print(drive_ls())
+
+
+textInput("nameInput", "Last name, First name")
+textInput("emailInput", "E-mail address")
+textInput("orgInput", "Organization")
+
+actionBttn(
+   inputId = "do2",
+   label = "Submit Proposed Synonyms", 
+    style = "fill",
+   color = "primary"
+)
+
+
+textOutput("text")
+verbatimTextOutput("name")
+verbatimTextOutput("email")
+
+#name<-reactive({as.character(paste0("Glossary_Resources/Synonym_Proposal_Sheets/",selected_uri(),"_",".csv"))})
+
+
+ observeEvent(input$do2, {
+   #name<-paste0("Glossary_Resources/Synonym_Proposal_Sheets/",selected_uri(),"_",".csv")
+  write.csv(cbind(sel_syn(),input$nameInput,input$emailInput,input$orgInput),"synonyms.csv")
+  upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/synonyms_submit_",nrow(drive_ls("Glossary_Resources/Synonym_Proposal_Sheets")),".csv"),type="spreadsheet")
+    output$text<-renderText({"Thank you for your contribution! Please feel free to submit more by starting at Step 1 again."})
+    
+  })
 ```
 
 
