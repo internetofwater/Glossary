@@ -80,7 +80,7 @@ downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...) 
 
 ## big table
 #g<-rdf_parse("glossary.ttl",format="turtle")
-endpoint<-"http://35.238.222.96:7200/repositories/Glossary_core"
+endpoint<-"http://35.238.222.96:7200/repositories/Synonym_search"
 q<-'PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://purl.org/iow/Glossary/>
 
@@ -288,8 +288,8 @@ Column {data-width=350}
 -----------------------------------------------------------------------
 ### Review synoynms
 
-<h5>Step 3. Review and submit synonym suggestions</h5>
-
+<h5>Step 3. Review synonym suggestions</h5>
+De-select any rows in step 2 if you're not sure they are synonymous with the term selected in Step 1.
 
 ```{r}
 
@@ -298,7 +298,7 @@ sel_syn = reactive({distinct(uris()[c(1,input$seltable_rows_selected),])})
 
  output$selsyn = DT::renderDataTable({
    DT::datatable(sel_syn(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,3,4), visible = FALSE)),
-     dom='it', buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit'))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+     dom='ti', buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit'))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
@@ -315,7 +315,7 @@ Column {data-width=350}
 ### Submit proposed synoynms
 
 <h5>Step 4. Submit synonym suggestions</h5>
-Once you have reviewed your choices of synonyms, please provide your name and email address and what organization you represent. Then, click the blue button below to submit!
+Once you have reviewed your choices of synonyms, please provide your name and email address and what organization you represent. Then, click the green button below to submit!
 
 ```{r}
 
@@ -330,23 +330,31 @@ actionBttn(
    inputId = "do2",
    label = "Submit Proposed Synonyms", 
     style = "fill",
-   color = "primary"
+   color = "success"
 )
 
 
-textOutput("text")
-verbatimTextOutput("name")
-verbatimTextOutput("email")
+ textOutput("text")
+# verbatimTextOutput("name")
+# verbatimTextOutput("email")
 
 #name<-reactive({as.character(paste0("Glossary_Resources/Synonym_Proposal_Sheets/",selected_uri(),"_",".csv"))})
 
 
  observeEvent(input$do2, {
-   #name<-paste0("Glossary_Resources/Synonym_Proposal_Sheets/",selected_uri(),"_",".csv")
-  write.csv(cbind(sel_syn(),input$nameInput,input$emailInput,input$orgInput),"synonyms.csv")
-  upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/synonyms_submit_",nrow(drive_ls("Glossary_Resources/Synonym_Proposal_Sheets")),".csv"),type="spreadsheet")
-    output$text<-renderText({"Thank you for your contribution! Please feel free to submit more by starting at Step 1 again."})
-    
+  # drive_download("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals",path="synonyms.csv",overwrite=TRUE)
+   
+   #sheet<-read.csv("synonyms.csv",header=TRUE)
+   
+   write.csv(cbind(sel_syn()$uri[1],sel_syn()$Definition[1],sel_syn(),input$nameInput,input$emailInput,input$orgInput),"synonyms.csv",row.names=FALSE)
+   
+   sendSweetAlert(session=session,title="Uploading...", text="Please wait while your contribution is being prepared and uploaded.",type="info", btn_labels="Wait")
+  upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/",as.character(Terms$Term[which(Terms$Term == input$search)]),"-",substr(as.character(Terms$uri[which(Terms$Term == input$search)]),30,100),"-",input$emailInput,"-synonyms_submit"),type="spreadsheet")
+    # upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals-",Sys.time()),type="spreadsheet",overwrite=TRUE)
+  
+    sendSweetAlert(session=session,title="Synonyms proposed!", text="Thank you for your contribution! Press 'ok' to continue browsing the glossary. Feel free to submit synonym proposals for more concepts.",type="success")
+
+
   })
 ```
 
