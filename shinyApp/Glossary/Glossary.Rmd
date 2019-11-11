@@ -68,8 +68,9 @@ library(shinyWidgets)
 #library(igraph)
 library(SPARQL)
 library(googledrive)
-drive_auth_configure(api_key = "AIzaSyABmEVEPLtZkb2mziBaCc37pYFE5dHsDUU")
-drive_auth(path="alien-craft-256317-ec852c98b4a0.json")
+
+drive_auth_configure(api_key = )
+drive_auth(path="alien-craft-256317-031817639c3a.json")
 
 
 downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {

@@ -1,1 +1,0 @@
-this is a document, which is also a text. but why do we call it text mining, instead of document mining?
