@@ -70,7 +70,7 @@ library(SPARQL)
 library(googledrive)
 
 
-drive_auth_configure(api_key = as.character(read.csv("ket.txt")[,1]))
+drive_auth_configure(api_key = read.csv("keys/ket.txt",header=FALSE,stringsAsFactors = FALSE)[,1])
 drive_auth(path="keys/alien-craft-256317-031817639c3a.json")
 
 
