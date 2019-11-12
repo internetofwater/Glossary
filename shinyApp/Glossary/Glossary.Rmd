@@ -230,10 +230,12 @@ options = list(  size = 10, `live-search` = TRUE)
 selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
 ```
 
-<h5>Step 2. Click all rows corresponding to concepts you believe are synonymous with the concepts selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected concept, as well as all other concepts in the glossary associated with the same term (i.e. homonyms).
+<h5>Step 2. Click all rows corresponding to concepts you believe are synonymous with the concepts selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected concept, as well as all other concepts in the glossary associated with the same term (i.e. homonyms). Synonyms that have already been identified and approved are not shown.
 ```{r}
 
 endpoint_sim<-"http://35.238.222.96:7200/repositories/Synonym_search"
+
+
 
 sel_parse<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
 PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
@@ -250,7 +252,7 @@ SELECT ?uri ?Term ?Definition ?Vocabulary ?score {
     ?uri skos:prefLabel ?Term .
     ?uri skos:definition ?Definition .
     ?uri skos:inScheme ?voc .
-    ?voc skos:prefLabel ?Vocabulary .
+    ?voc skos:prefLabel ?Vocabulary
 }')})
 #sel_uris<-reactive({SPARQL(endpoint_sim,sel_parse(),format="csv")$result%>%mutate(score=round(score,2))})
 
@@ -274,10 +276,30 @@ SELECT ?uri ?Term ?Definition ?Vocabulary ?score {
 }')})
 #hom_uris<-reactive({SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%mutate(score=round(score,2))})
 
-uris<-reactive({bind_rows(SPARQL(endpoint_sim,sel_parse(),format="csv")$result%>%mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")),SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")))%>%distinct(uri,.keep_all=TRUE)%>%arrange(-score)})
+synparse2<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX : <http://purl.org/iow/Glossary/>
+select ?uri where{
+    <',selected_uri(), '> skos:exactMatch ?uri
+}')})
+ syn_uris2<-reactive({SPARQL(endpoint,synparse2(),format="csv")$result%>%filter(selected_uri()!=uri)})
+
+
+uris<-reactive({bind_rows(SPARQL(endpoint_sim,sel_parse(),format="csv")$result%>%
+                            mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")),SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%
+                            mutate(score=round(score,2),Term=paste0(Term," (",Vocabulary,")")))%>%
+    distinct(uri,.keep_all=TRUE)%>%
+    arrange(-score)})
+
+#uris2<-reactive({anti_join(uris(),syn_uris2(),by="uri")})
+
+uris2<-reactive({if(is.logical(syn_uris2()$uri)){
+  uris()}else{anti_join(uris(),syn_uris2(),by="uri")
+    
+  }
+})
 
  output$seltable = DT::renderDataTable({
-   DT::datatable(uris(),options = list(columnDefs = list(list(targets = c(0,3), visible = FALSE)),dom='ti',ordering=F,"pageLength" = 5000,scrollY='55vh',buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit')))), rownames=FALSE, escape=FALSE, selection="multiple"
+   DT::datatable(uris2(),options = list(columnDefs = list(list(targets = c(0,3), visible = FALSE)),dom='ti',ordering=F,"pageLength" = 5000,scrollY='55vh',buttons = list(list(extend = 'csv', filename= paste0('synonyms_submit')))), rownames=FALSE, escape=FALSE, selection="multiple"
    )
  })
 
