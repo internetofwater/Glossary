@@ -45,7 +45,7 @@ Within the ‘Gathering Data’ subsection, fill in the following…
 
 Within the ‘Cleaning Text’ subsection, create any text cleaning python scripts if needed / wanted.
 
-Within ‘Exporting Text to xlsx file; subsection, change xlsx file name to be specific to that glossary and state agency (e.g. ‘UDWR Glossary.xlsx’, etc).
+Within ‘Exporting Text to xlsx file' subsection, change xlsx file name to be specific to that glossary and state agency (e.g. ‘UDWR Glossary.xlsx’, etc).
 
 Run code.
 
