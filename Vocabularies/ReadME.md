@@ -1,5 +1,7 @@
 # IOW Glossary Text Extraction Technique Description
 
+The Internet of Water (IOW) Glossary project aims to produce a vocabulary management system where terms are ingested into a [SKOS](https://www.w3.org/2004/02/skos/)-compliant RDF and semantic links (skos:related and skos:exactMatch) are drawn between terms by collecting water use terms and their definition as used by US federal and state agencies.  Currently this is a shiny app hosted by RStudio's free cloud hosting service here: http://35.238.222.96:7200/graphs-visualizations?uri=http:%2F%2Fpurl.org%2Fiow%2FGlossary
+
 This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed.  The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
 This ReadME will use the Utah Division of Water Quality as a good html example.
@@ -75,10 +77,26 @@ Rename Template.xlsx file to a suitable concatenation of agency and vocabulary (
 ### 5: Push Files to GitHub Repository
 Push agency.xlsx file and text extract .py file to an appropriate organization-level folder in the 'Vocabularies' folder in this repository.
 
-### 6: Update Assignment.xlsw sheet
-Fill in State Agency Assignments.xlsx file at https://github.com/internetofwater/Glossary/tree/master/Vocabularies.
+### 6: Update Assignment Table
+Fill in below State Agency Assignments table.
 - **‘Assigned to…’ column with your name.**
 - **‘Agency & State’ column with name of agency.xlsx file from previous step.**
 - **Completed?’ column with Yes or No.**
 - **‘URL’ with link to source information.**
+
+| Assinged to… | Agency & State | Completed? |                 URL?                                            |
+| :---         |     :---:      |    :---:   |                          :---                                   |
+|  Ryan James  |	  asce-et-g   |	    Yes    | https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
+|  Ryan James  |	  az-deq      |	    Yes    | https://legacy.azdeq.gov/function/help/glossary.html |
+|  Ryan James  |	  az-dwr      |	    No     | https://new.azwater.gov/dictionary  |
+|  Ryan James  |	  az-dwr-gpw  |	    No     | https://new.azwater.gov/permitting-wells/terminology |
+|  Ryan James  |	  co-cdr-g    |	    Yes    | https://www.coloradoriverdistrict.org/water-glossary/ |
+|  Ryan James  |	  nm-wrap-g   |	    Yes    | https://www.ose.state.nm.us/WR/glossary.php |
+|  Ryan James  |	 ut-udwq-g    |	    Yes    | https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program|
+|  Ryan James  |	 ut-udwr-g    |	    Yes    | https://waterrights.utah.gov/wrinfo/glossary.asp |
+|  Ryan James  |	 wy-wrri-hg   |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
+|  Ryan James  |	 wy-wrri-wqg  |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
+|              |	              |	           |	                                                              |
+|              |	              |	           |	                                                              |
+|              |	              |	           |	                                                              |
 
