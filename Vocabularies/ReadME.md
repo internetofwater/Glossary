@@ -85,7 +85,7 @@ Fill in below State Agency Assignments table.
 - **‘URL’ with link to source information.**
 
 | Assinged to | State | Agency      | Completed? |                           URL?                                  |
-|    :---:    | :---: |  :---:      |    :---:   |                           :---:                                 |
+|    :---:    | :---: |  :---:      |    :---:   |                           :---                                  |
 | Ryan James  | ASCE  | asce-et-g   | Yes        | https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
 | Ryan James  | AZ    | az-deq      | Yes        | https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | No         | https://new.azwater.gov/dictionary  |
