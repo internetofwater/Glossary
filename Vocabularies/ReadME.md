@@ -27,20 +27,30 @@ Right click + inspect webpage.  Scroll through window.  Located item of interest
 
 ### 3: Craft Agency Specific Text Extraction Python File
 Update and craft .py file that will meet the specific challenges of the webpage in order to extract the appropriate text.
+
 Fill out Notes at top of each .py file.
+
 Within the ‘Retrieving html Information’ subsection, copy & Paste UWRL as ‘result’ variable.
+
 Within the ‘#Gathering Data’ subsection, fill in the following…
 - **Set ‘needed class’ variable to class tag available.  If not set to ‘soup’.**
 - **Within for loop, set text search for specific tag of item of interests.**
+
 Within the ‘Cleaning Text’ subsection, create any text cleaning python scripts if needed / wanted.
+
 Within ‘Exporting Text to xlsx file; subsection, change xlsx file name to be specific to that glossary and state agency (e.g. ‘UDWR Glossary.xlsx’, etc).
+
 Run code.
 
 ### 4: Copy / Update Template.xlsx Information
 Copy information over into ‘Template.xlsx’ file, located at https://github.com/internetofwater/Glossary.
+
 Name to ‘Term Name’ column.
+
 If available / given, term abbreviation to “Abbreviation’ column.
+
 Definition to ‘Definition’ column.
+
 Manually select and fill out entries for ‘Theme 1 – 5’ columns.  Choose theme that best matches the given state term definition.  Terms may have a max of 5 theme tags, and a minimum of 1.
 
 Theme Definitions:
