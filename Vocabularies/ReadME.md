@@ -32,7 +32,7 @@ Fill out Notes at top of each .py file.
 
 Within the ‘Retrieving html Information’ subsection, copy & Paste UWRL as ‘result’ variable.
 
-Within the ‘#Gathering Data’ subsection, fill in the following…
+Within the ‘Gathering Data’ subsection, fill in the following…
 - **Set ‘needed class’ variable to class tag available.  If not set to ‘soup’.**
 - **Within for loop, set text search for specific tag of item of interests.**
 
