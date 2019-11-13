@@ -98,8 +98,6 @@ Fill in below State Agency Assignments table.
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
 |             |       |	            | No         | https://www.owrb.ok.gov/util/glossary.php |
 |             |       |	            | No         | https://idwr.idaho.gov/terminology.html |
-|             |       |	            | No	       |	                                       |
-|             |       |	            | No	       |	                                       |
 |             |       |	            | No	       | https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
 |             |       |	            | No	       | https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
 |             |       |	            | No	       | https://www.thefreshwatertrust.org/glossary-of-terms/ |
