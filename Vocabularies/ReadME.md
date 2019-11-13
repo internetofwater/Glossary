@@ -1,8 +1,11 @@
 # IOW Glossary Text Extraction Technique Description
 
-This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed. The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
+This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed.  The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
-
+This ReadME will use the Utah Division of Water Quality as a good html example.
+- **source info: https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program
+- **completed py file for text extraction: ut-udwq-hg-htmltoxlsx.py**
+- **completed IOW xlsx file: ut-udwq-g.xlsx**
 
 ## Good and Bad HTML Accessible Glossary Information
 Good and bad examples of available html glossary information.  
@@ -26,7 +29,10 @@ Right click + inspect webpage.  Scroll through window.  Located item of interest
 - **item class tag if available (typically in orange text.  Will help narrow down search on text extract with items that may share the same tag).**
 
 ### 3: Craft Agency Specific Text Extraction Python File
-Update and craft .py file that will meet the specific challenges of the webpage in order to extract the appropriate text.
+Note: each source webpage is unique and will most likely require a new / different approach.  Be aware of the challenges each source webpage will require.  The text extraction technique outlined here is one such approach, but others are also acceptable.
+
+
+Update and craft py file that will meet the specific challenges of the webpage in order to extract the appropriate text.
 
 Fill out Notes at top of each .py file.
 
