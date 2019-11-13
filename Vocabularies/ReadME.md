@@ -3,6 +3,7 @@
 This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed. The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
 
+
 ## Good and Bad HTML Accessible Glossary Information
 Good and bad examples of available html glossary information.  
 
@@ -11,6 +12,7 @@ Good example: Html webpage information available online: https://deq.utah.gov/wa
 Bad example: Html webpage information online but not accessible (text extraction is forbidden).  Will need alternative text extraction approach: https://www.coloradoriverdistrict.org/water-glossary/
 
 Bad example: No html webpage information online.  Will need to seek alternative text extraction approach: http://water.nv.gov/programs/planning/dictionary/wwords-A.pdf
+
 
 
 ## Text Extraction Steps
