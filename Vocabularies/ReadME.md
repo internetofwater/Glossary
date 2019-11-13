@@ -84,20 +84,20 @@ Fill in below State Agency Assignments table.
 - **Completed?’ column with Yes or No.**
 - **‘URL’ with link to source information.**
 
-| Assinged to… | State | Agency & State | Completed? |                           URL?                                  |
-|    :---:     | :---: |     :---:      |    :---:   |                           :---:                                 |
-|  Ryan James  | ASCE  |	  asce-et-g   |	    Yes    | https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
-|  Ryan James  | AZ    |	  az-deq      |	    Yes    | https://legacy.azdeq.gov/function/help/glossary.html |
-|  Ryan James  | AZ    |	  az-dwr      |	    No     | https://new.azwater.gov/dictionary  |
-|  Ryan James  | AZ    |	  az-dwr-gpw  |	    No     | https://new.azwater.gov/permitting-wells/terminology |
-|  Ryan James  | CO    |	  co-cdr-g    |	    Yes    | https://www.coloradoriverdistrict.org/water-glossary/ |
-|  Ryan James  | NM    |	  nm-wrap-g   |	    Yes    | https://www.ose.state.nm.us/WR/glossary.php |
-|  Ryan James  | UT    |	 ut-udwq-g    |	    Yes    | https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program|
-|  Ryan James  | UT    |	 ut-udwr-g    |	    Yes    | https://waterrights.utah.gov/wrinfo/glossary.asp |
-|  Ryan James  | WY    |	 wy-wrri-hg   |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
-|  Ryan James  | WY    |	 wy-wrri-wqg  |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-|  your name   |       |	              |	    no     |	    https://www.owrb.ok.gov/util/glossary.php               |
-|  your name   |       |	              |	    no     |	         https://idwr.idaho.gov/terminology.html            |
-|              |       |	              |	           |	                                                              |
-|              |       |	              |	           |	                                                              |
+| Assinged to | State | Agency      | Completed? |                           URL?                                  |
+|    :---:    | :---: |  :---:      |    :---:   |                           :---:                                 |
+| Ryan James  | ASCE  | asce-et-g   | Yes        | https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
+| Ryan James  | AZ    | az-deq      | Yes        | https://legacy.azdeq.gov/function/help/glossary.html |
+| Ryan James  | AZ    | az-dwr      | No         | https://new.azwater.gov/dictionary  |
+| Ryan James  | AZ    | az-dwr-gpw  | No         | https://new.azwater.gov/permitting-wells/terminology |
+| Ryan James  | CO    | co-cdr-g    | Yes        | https://www.coloradoriverdistrict.org/water-glossary/ |
+| Ryan James  | NM    | nm-wrap-g   | Yes        | https://www.ose.state.nm.us/WR/glossary.php |
+| Ryan James  | UT    | ut-udwq-g   | Yes        | https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program |
+| Ryan James  | UT    | ut-udwr-g   | Yes        | https://waterrights.utah.gov/wrinfo/glossary.asp |
+| Ryan James  | WY    | wy-wrri-hg  | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
+| Ryan James  | WY    | wy-wrri-wqg | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
+| your name   |       |	            | no         | https://www.owrb.ok.gov/util/glossary.php |
+| your name   |       |	            | no         | https://idwr.idaho.gov/terminology.html |
+|             |       |	            |	           |	                                       |
+|             |       |	            |	           |	                                       |
 
