@@ -96,8 +96,17 @@ Fill in below State Agency Assignments table.
 | Ryan James  | UT    | ut-udwr-g   | Yes        | https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| your name   |       |	            | no         | https://www.owrb.ok.gov/util/glossary.php |
-| your name   |       |	            | no         | https://idwr.idaho.gov/terminology.html |
-|             |       |	            |	           |	                                       |
-|             |       |	            |	           |	                                       |
-
+|             |       |	            | No         | https://www.owrb.ok.gov/util/glossary.php |
+|             |       |	            | No         | https://idwr.idaho.gov/terminology.html |
+|             |       |	            | No	       |	                                       |
+|             |       |	            | No	       |	                                       |
+|             |       |	            | No	       | https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
+|             |       |	            | No	       | https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
+|             |       |	            | No	       | https://www.thefreshwatertrust.org/glossary-of-terms/ |
+|             |       |	            | No	       | https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
+|             |       |	            | No	       | https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
+|             |       |	            | No	       | http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
+|             |       |	            | No	       | https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
+|             |       |	            | No	       | https://www.tceq.texas.gov/remediation/superfund/glossary.html |
+|             |       |	            | No	       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
+|             |       |	            |	No         | https://denr.sd.gov/des/wr/dictionary.aspx |
