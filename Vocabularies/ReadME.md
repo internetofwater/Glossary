@@ -3,10 +3,10 @@
 This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed.  The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
 This ReadME will use the Utah Division of Water Quality as a good html example.
-- **source info: https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program
-- **completed files found at: https://github.com/internetofwater/Glossary/tree/master/Vocabularies/UT
-- **completed py file for text extraction: ut-udwq-hg-htmltoxlsx.py
-- **completed IOW xlsx file: ut-udwq-g.xlsx
+- source info: https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program
+- completed files found at: https://github.com/internetofwater/Glossary/tree/master/Vocabularies/UT
+- completed py file for text extraction: ut-udwq-hg-htmltoxlsx.py
+- completed IOW xlsx file: ut-udwq-g.xlsx
 
 ## Good and Bad HTML Accessible Glossary Information
 Good and bad examples of available html glossary information.  
