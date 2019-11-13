@@ -1,9 +1,10 @@
-# Glossary
+# IWO Glossary Text Extraction
 
-This readme details the process of gathering and processing glossary term and definition data.
+This readme details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed. The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
-## Data Prep
-Good and bad examples of avaiable html glossaryh informaiton.  Note: We need glossary informatoin, even if it's a bad example.  If bad example will have to seek altnertaive text extraciton technique other than the one outlined here within this ReadME file.
+
+# Good and Bad HTML Accessible Glossary Information
+Good and bad examples of available html glossary information.  
 
 Good example: Html webpage information available online: https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program
 
@@ -12,8 +13,10 @@ Bad example: Html webpage information online but not accessible (text extraction
 Bad example: No html webpage information online.  Will need to seek alternative text extraction approach: http://water.nv.gov/programs/planning/dictionary/wwords-A.pdf
 
 
-### Step 1: Locate State Instiution Glossary
-Locate online state agency available glossary term and definition information.  If available in html format, continue to step-2.  If not, seek alternative text extraction process.
+# Text Extraction Steps
+
+### Step 1: Locate State Institution Glossary
+Locate online state agency available glossary term and definition information.  If available in html format, continue to step-2.  If not, skip to step-4 and seek alternative text extraction process.
 
 ### Step 2: Located text Tags
 Right click + inspect webpage.  Scroll through window.  Located item of interest and note the following...
@@ -27,7 +30,7 @@ Within the ‘Retrieving html Information’ subsection, copy & Paste UWRL as �
 Within the ‘#Gathering Data’ subsection, fill in the following…
 - **Set ‘needed class’ variable to class tag available.  If not set to ‘soup’.**
 - **Within for loop, set text search for specific tag of item of interests.**
-Within the ‘Cleaning Text’ subsection, create any text cleaning python scripts if needed / watend.
+Within the ‘Cleaning Text’ subsection, create any text cleaning python scripts if needed / wanted.
 Within ‘Exporting Text to xlsx file; subsection, change xlsx file name to be specific to that glossary and state agency (e.g. ‘UDWR Glossary.xlsx’, etc).
 Run code.
 
