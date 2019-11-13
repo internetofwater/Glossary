@@ -1,6 +1,6 @@
 # IOW Glossary Text Extraction Technique Description
 
-This readme details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed. The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
+This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed. The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
 
 ## Good and Bad HTML Accessible Glossary Information
