@@ -1,5 +1,5 @@
 ---
-title: GLOSSARY
+title: Water Terminology Collection
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -87,13 +87,13 @@ endpoint<-"http://35.238.222.96:7200/repositories/Synonym_search"
 q<-'PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX : <http://purl.org/iow/Glossary/>
 
-select ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme  WHERE { 
+select ?uri ?Term ?Source ?voclink ?Organization ?Definition ?Theme  WHERE { 
 	?uri a skos:Concept .
     ?uri skos:prefLabel ?Term .
     ?uri skos:definition ?Definition .
     ?uri skos:inScheme ?voc .
     ?voc skos:note ?voclink .
-    ?voc skos:prefLabel ?Vocabulary .
+    ?voc skos:prefLabel ?Source .
     ?voc rdfs:isDefinedBy ?Org .
     ?Org skos:prefLabel ?Organization .
     ?Th skos:member ?uri .
@@ -103,15 +103,33 @@ select ?uri ?Term ?Vocabulary ?voclink ?Organization ?Definition ?Theme  WHERE {
 data<-SPARQL(endpoint,q,format="csv")$results
 data[] <- lapply(data, as.character)
 
-Terms<-distinct(data[c("uri","Term","Vocabulary")])%>%arrange(Term)
-Terms$Term<-paste0(Terms$Term," (",Terms$Vocabulary,")")
-data$Vocabulary <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Vocabulary,'</a>')
+Terms<-distinct(data[c("uri","Term","Source")])%>%arrange(Term)
+Terms$Term<-paste0(Terms$Term," (",Terms$Source,")")
+data$Source <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Source,'</a>')
 data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
-data<-data[c("uri","Term","Definition","Vocabulary","voclink","Organization","Theme")]
+data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]
 
 
 
 ```
+User Guide
+=====================================  
+
+Column {data-width=1000}
+-----------------------------------------------------------------------
+### Welcome
+
+THis resource is about ....
+
+<h3>User Guide</h3>
+
+Three Components ....
+
+1. 
+
+2. 
+
+3.
 
 
 
@@ -123,7 +141,7 @@ Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Main Table of Terms
-<h5>Filter by Theme and/or Organization. Click rows to view synonyms and related terms on the right.</h5>
+<h5>Filter by Theme and/or Source. Click rows to view synonyms (terms with equivalent definitions) on the right.</h5>
 
 ```{r}
 
@@ -149,7 +167,7 @@ column(1,pickerInput(
     choices = unique(data[order(data$Organization),]$Organization),
    selected=unique(data[order(data$Organization),]$Organization),
    multiple=TRUE, width=300, options = list(
-      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Organization(s)")
+      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)")
 ),offset=3))
 
 
@@ -159,7 +177,7 @@ column(1,pickerInput(
 
 output$table = DT::renderDataTable({
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
-    dom='Bti', buttons = list(list(extend = 'csv', filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
+    dom='Bti', buttons = list(list(extend = 'csv',text="Download CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
 })
 
@@ -192,7 +210,7 @@ select ?uri where{
 
  output$syntable = DT::renderDataTable({
    DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
-     dom='Bt', buttons = list(list(extend = 'csv', filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+     dom='Bt', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
@@ -392,8 +410,6 @@ Column
 
 ### Submit your vocabulary
 
-<p style="font-size: 18px">We are in the process of collecting vocabularies in use by public water resources and quality agencies, NGOs, and private-sector organizations across the country. If you did not see your organization's vocabulary/ies represented in our Main Term Browser tab, please consider contributing a vocabulary to our Glossary! </p>
+<p style="font-size: 24px">We seek to compare words (and definitions) used by different organizations to describe aspects of water, including water quantity, quality, use, infrastructure, and policy. We are in the process of collecting vocabularies about water in use by public water resources and quality agencies, NGOs, and private-sector organizations. If you did not see your organization's vocabulary/ies represented in our Main Term Browser tab, please consider contributing a vocabulary to our Collection! </p>
 
-
-<p style="font-size: 18px">[Click here to contribute](https://ee.kobotoolbox.org/i/::BQ2kodoV)</p>
-
+<p style="font-size: 24px"><a href="https://ee.kobotoolbox.org/i/::BQ2kodoV"  target="_blank" rel="noopener">Click here to contribute</a></p>
