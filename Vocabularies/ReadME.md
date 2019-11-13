@@ -96,7 +96,9 @@ Fill in below State Agency Assignments table.
 |  Ryan James  |	 ut-udwr-g    |	    Yes    | https://waterrights.utah.gov/wrinfo/glossary.asp |
 |  Ryan James  |	 wy-wrri-hg   |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 |  Ryan James  |	 wy-wrri-wqg  |	    Yes    | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
+|  your name   |	              |	     no      |	    https://www.owrb.ok.gov/util/glossary.php               |
+|  your name   |	              |	    no       |	         https://idwr.idaho.gov/terminology.html                               |
 |              |	              |	           |	                                                              |
-|              |	              |	           |	                                                              |
+
 |              |	              |	           |	                                                              |
 
