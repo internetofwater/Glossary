@@ -26,12 +26,19 @@ Bad example: No html webpage information online.  Will need to seek alternative 
 ### Step 1: Locate State Institution Glossary
 Locate online state agency available glossary term and definition information.  If available in html format, continue to step-2.  If not, skip to step-4 and seek alternative text extraction process.
 
-### Step 2: Located text Tags
+### Step 2: Update Assignment Table Again
+Please fill in the in below State Agency Assignments table to help coordinate assignments and glossary project progress.
+- **‘Assigned to…’ column with your name.**
+- **‘Agency & State’ column with name of agency.xlsx file from previous step.**
+- **Completed?’ column with Yes or No.**
+- **‘URL’ with link to source information.**
+
+### Step 3: Located text Tags
 Right click + inspect webpage.  Scroll through window.  Located item of interest and note the following...
 - **item tag (typically in purple text) (e.g. ‘p’, ‘strong’, ‘dt, etc).**
 - **item class tag if available (typically in orange text.  Will help narrow down search on text extract with items that may share the same tag).**
 
-### Step 3: Craft Agency Specific Text Extraction Python File
+### Step 4: Craft Agency Specific Text Extraction Python File
 Note: each source webpage is unique and will most likely require a new / different approach.  Be aware of the challenges each source webpage will require.  The text extraction technique outlined here is one such approach, but others are also acceptable.
 
 
@@ -51,7 +58,7 @@ Within ‘Exporting Text to xlsx file' subsection, change xlsx file name to be s
 
 Run code.
 
-### Step 4: Copy / Update Template.xlsx Information
+### Step 5: Copy / Update Template.xlsx Information
 Copy information over into ‘Template.xlsx’ file, located at https://github.com/internetofwater/Glossary.
 
 Name to ‘Term Name’ column.
@@ -74,11 +81,11 @@ Theme Definitions:
 
 Rename Template.xlsx file to a suitable concatenation of agency and vocabulary (e.g. ut-udwq-g for 'Utah Department of Water Quality Glossary).
 
-### Step 5: Push Files to GitHub Repository
+### Step 6: Push Files to GitHub Repository
 Push agency.xlsx file and text extract .py file to an appropriate organization-level folder in the 'Vocabularies' folder in this repository.
 
-### Step 6: Update Assignment Table
-Fill in below State Agency Assignments table.
+### Step 7: Update Assignment Table Again
+Please update the below State Agency Assignments table that your assignment is complete.
 - **‘Assigned to…’ column with your name.**
 - **‘Agency & State’ column with name of agency.xlsx file from previous step.**
 - **Completed?’ column with Yes or No.**
