@@ -31,7 +31,7 @@ Right click + inspect webpage.  Scroll through window.  Located item of interest
 - **item tag (typically in purple text) (e.g. ‘p’, ‘strong’, ‘dt, etc).**
 - **item class tag if available (typically in orange text.  Will help narrow down search on text extract with items that may share the same tag).**
 
-### 3: Craft Agency Specific Text Extraction Python File
+### Step 3: Craft Agency Specific Text Extraction Python File
 Note: each source webpage is unique and will most likely require a new / different approach.  Be aware of the challenges each source webpage will require.  The text extraction technique outlined here is one such approach, but others are also acceptable.
 
 
@@ -51,7 +51,7 @@ Within ‘Exporting Text to xlsx file' subsection, change xlsx file name to be s
 
 Run code.
 
-### 4: Copy / Update Template.xlsx Information
+### Step 4: Copy / Update Template.xlsx Information
 Copy information over into ‘Template.xlsx’ file, located at https://github.com/internetofwater/Glossary.
 
 Name to ‘Term Name’ column.
@@ -74,10 +74,10 @@ Theme Definitions:
 
 Rename Template.xlsx file to a suitable concatenation of agency and vocabulary (e.g. ut-udwq-g for 'Utah Department of Water Quality Glossary).
 
-### 5: Push Files to GitHub Repository
+### Step 5: Push Files to GitHub Repository
 Push agency.xlsx file and text extract .py file to an appropriate organization-level folder in the 'Vocabularies' folder in this repository.
 
-### 6: Update Assignment Table
+### Step 6: Update Assignment Table
 Fill in below State Agency Assignments table.
 - **‘Assigned to…’ column with your name.**
 - **‘Agency & State’ column with name of agency.xlsx file from previous step.**
