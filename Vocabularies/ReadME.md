@@ -96,7 +96,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | ASCE  | asce-et-g   | Yes        | https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
 | Ryan James  | AZ    | az-deq      | Yes        | https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | Yes        | https://new.azwater.gov/dictionary  |
-| Ryan James  | AZ    | az-dwr-gpw  | No         | https://new.azwater.gov/permitting-wells/terminology |
+| Ryan James  | AZ    | az-dwr-gpw  | Yes        | https://new.azwater.gov/permitting-wells/terminology |
 | Ryan James  | CO    | co-cdr-g    | Yes        | https://www.coloradoriverdistrict.org/water-glossary/ |
 | Ryan James  | NM    | nm-wrap-g   | Yes        | https://www.ose.state.nm.us/WR/glossary.php |
 | Ryan James  | UT    | ut-udwq-g   | Yes        | https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program |
