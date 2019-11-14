@@ -27,7 +27,7 @@ Bad example: No html webpage information online.  Will need to seek alternative 
 Locate online state agency available glossary term and definition information.  If available in html format, continue to step-2.  If not, skip to step-4 and seek alternative text extraction process.
 
 ### Step 2: Update Assignment Table Again
-Please fill in the in below State Agency Assignments table to help coordinate assignments and glossary project progress.
+Please fill in the in below State Agency Assignments table (Step 7) to help coordinate assignments and glossary progress.
 - **‘Assigned to…’ column with your name.**
 - **‘Agency & State’ column with name of agency.xlsx file from previous step.**
 - **Completed?’ column with Yes or No.**
