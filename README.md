@@ -9,7 +9,7 @@ There are three components of the Internet of Water Glossary (new name reccomend
 
 2. A graph database implemented with [Ontotext GraphDB](http://graphdb.ontotext.com/) free edition where the vocabulary management system stores the ontology. Our GraphDB has two databases within it. First, a live database connected directly to VocBench and only accessible via VocBench or to database admins. Second, a mirror that has an open SPARQL endpoint for SELECT queries. This mirror also builds an [index of textual similarity](http://graphdb.ontotext.com/documentation/standard/semantic-similarity-searches.html) of definition.vWeekly, the live database is re-mirrored, and dumps of the database are made to JSON-LD files in this repository's [backup folder](https://github.com/internetofwater/Glossary/Backups)
 
-3. A front-end browser. Currently this is a shiny app hosted by RStudio's free cloud hosting service here: [http://purl.org/iow/Glossary](http://purl.org/iow/GlossaryBrowser). The shiny app queries the mirror of the graph database via SPARQL. The browser also serves the important function of querying the similarity index to allow for human identification of synonyms (terms with equivalent definitions)
+3. A front-end browser. Currently this is a shiny app hosted by RStudio's free cloud hosting service here: [http://purl.org/iow/GlossaryBrowser](http://purl.org/iow/GlossaryBrowser). The shiny app queries the mirror of the graph database via SPARQL. The browser also serves the important function of querying the similarity index to allow for human identification of synonyms (terms with equivalent definitions)
 
 
 
