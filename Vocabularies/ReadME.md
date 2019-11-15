@@ -116,3 +116,4 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |       |	            | No	       | https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |       |	            | No	       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 |             |       |	            |	No         | https://denr.sd.gov/des/wr/dictionary.aspx |
+|             |USBR   |  usbr-g     | No           |https://www.usbr.gov/library/glossary/
