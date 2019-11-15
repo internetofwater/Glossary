@@ -103,7 +103,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Ryan James  | ID    | id-dwr-wrg  | Yes        | https://idwr.idaho.gov/water-rights/overview.html |
+| Ryan James  | ID    | id-dwr-wro  | Yes        | https://idwr.idaho.gov/water-rights/overview.html |
 |             |       |	            | No         | https://www.owrb.ok.gov/util/glossary.php |
 |             |       |	            | No         | https://idwr.idaho.gov/terminology.html |
 |             |       |	            | No	       | https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
