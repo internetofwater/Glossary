@@ -3,7 +3,7 @@ An ontology of water, data, and internal IoW concepts, with definitions and prov
 
 ## Overall organization
 
-There are four components of the Internet of Water Glossary (new name reccomended by the Board of Advisors TBD)
+There are three components of the Internet of Water Glossary (new name reccomended by the Board of Advisors TBD)
 
 1. A vocabulary management system where terms are ingested into a [SKOS](https://www.w3.org/2004/02/skos/)-compliant RDF and semantic links (skos:related and skos:exactMatch) are drawn between terms. We use [VocBench3](http://vocbench.uniroma2.it/). Our implementation is at [http://purl.org/iow/vocbench3](http://purl.org/iow/vocbench3). It is a docker image of VocBench v.3.6.0.0 (see our [repository](https://github.com/internetofwater/docker-vocbench3))
 
