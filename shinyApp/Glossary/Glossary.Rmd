@@ -68,6 +68,8 @@ library(shinyWidgets)
 #library(igraph)
 library(SPARQL)
 library(googledrive)
+library(data.table)
+library(dtplyr)
 
 
 #drive_auth_configure(api_key = read.csv("keys/ket.txt",header=FALSE,stringsAsFactors = FALSE)[,1])
@@ -103,12 +105,14 @@ select ?uri ?Term ?Source ?voclink ?Organization ?Definition ?Theme  WHERE {
 data<-SPARQL(endpoint,q,format="csv")$results
 data[] <- lapply(data, as.character)
 
+
 Terms<-distinct(data[c("uri","Term","Source")])%>%arrange(Term)
 Terms$Term<-paste0(Terms$Term," (",Terms$Source,")")
 data$Source <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Source,'</a>')
 data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
-data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]
+data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]%>%arrange(Term)
 
+#data2 <- as.data.table(data)
 
 
 ```
@@ -149,7 +153,7 @@ ch<-unique(data[order(data$Theme),]$Theme)
 ch<-c(ch,"Other")
 data$Theme[which(is.na(data$Theme))]<-"Other"
 d <- reactive({
-  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%arrange(Term)%>%distinct(uri,.keep_all=T)
+  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)
 })
 
 
@@ -165,9 +169,9 @@ column(1,pickerInput(
    inputId = "filter2",
  #  label = "Organizations(s)",
     choices = unique(data[order(data$Organization),]$Organization),
-   selected=unique(data[order(data$Organization),]$Organization),
+   selected=unique(data[order(data$Organization),]$Organization), 
    multiple=TRUE, width=300, options = list(
-      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)")
+      `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)", `live-search`=TRUE)
 ),offset=3))
 
 
