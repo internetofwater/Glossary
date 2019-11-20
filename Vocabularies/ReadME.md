@@ -97,14 +97,14 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | AZ    | az-deq      | Yes        | Yes|https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | Yes        | Yes|https://new.azwater.gov/dictionary  |
 | Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes|https://new.azwater.gov/permitting-wells/terminology |
+| Ryan James  | CA    | ca-wb-wwgd  | Yes        | No|https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 | Ryan James  | CO    | co-cdr-g    | Yes        | Yes|https://www.coloradoriverdistrict.org/water-glossary/ |
+| Ryan James  | ID    | id-dwr-wro  | Yes        | Yes|https://idwr.idaho.gov/water-rights/overview.html |
 | Ryan James  | NM    | nm-wrap-g   | Yes        | Yes|https://www.ose.state.nm.us/WR/glossary.php |
 | Ryan James  | UT    | ut-udwq-g   | Yes        | Yes|https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program |
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes|https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes|http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes|http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Ryan James  | ID    | id-dwr-wro  | Yes        | Yes|https://idwr.idaho.gov/water-rights/overview.html |
-| Ryan James  | CA    | ca-wb-wwgd  | Yes        | No|https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 |             |       |	            | No         | |https://www.owrb.ok.gov/util/glossary.php |
 |             |       |	            | No         | |https://idwr.idaho.gov/terminology.html |
 |             |       |	            | No	       | |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
