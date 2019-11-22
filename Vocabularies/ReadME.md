@@ -93,28 +93,29 @@ Please update the below State Agency Assignments table that your assignment is c
 
 | Assinged to | State | Agency      | Completed? | In VocBench?|                          URL?                                  |
 |    :---:    | :---: |  :---:      |    :---:   | :---: |                          :---                                  |
-| Ryan James  | ASCE  | asce-et-g   | Yes        | Yes|https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
-| Ryan James  | AZ    | az-deq      | Yes        | Yes|https://legacy.azdeq.gov/function/help/glossary.html |
-| Ryan James  | AZ    | az-dwr      | Yes        | Yes|https://new.azwater.gov/dictionary  |
-| Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes|https://new.azwater.gov/permitting-wells/terminology |
-| Ryan James  | CA    | ca-wb-wwgd  | Yes        | No|https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
-| Ryan James  | CO    | co-cdr-g    | Yes        | Yes|https://www.coloradoriverdistrict.org/water-glossary/ |
-| Ryan James  | ID    | id-dwr-wro  | Yes        | Yes|https://idwr.idaho.gov/water-rights/overview.html |
-| Ryan James  | NM    | nm-wrap-g   | Yes        | Yes|https://www.ose.state.nm.us/WR/glossary.php |
-| Ryan James  | UT    | ut-udwq-g   | Yes        | Yes|https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program |
-| Ryan James  | UT    | ut-udwr-g   | Yes        | Yes|https://waterrights.utah.gov/wrinfo/glossary.asp |
-| Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes|http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
-| Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes|http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-|             |       |	            | No         | |https://www.owrb.ok.gov/util/glossary.php |
-|             |       |	            | No         | |https://idwr.idaho.gov/terminology.html |
-|             |       |	            | No	       | |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
-|             |       |	            | No	       | |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
-|             |       |	            | No	       | |https://www.thefreshwatertrust.org/glossary-of-terms/ |
-|             |       |	            | No	       | |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
-|             |       |	            | No	       | |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
-|             |       |	            | No	       | |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
-|             |       |	            | No	       | |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
-|             |       |	            | No	       | |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
-|             |       |	            | No	       | |https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
-|             |       |	            |	No         | |https://denr.sd.gov/des/wr/dictionary.aspx |
-|             |USBR   |  usbr-g     | No         |  |https://www.usbr.gov/library/glossary/
+| Ryan James  | ASCE  | asce-et-g   | Yes        | Yes   |https://ascelibrary.org/doi/pdf/10.1061/9780784408056.bm |
+| Ryan James  | AZ    | az-deq      | Yes        | Yes   |https://legacy.azdeq.gov/function/help/glossary.html |
+| Ryan James  | AZ    | az-dwr      | Yes        | Yes   |https://new.azwater.gov/dictionary  |
+| Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes   |https://new.azwater.gov/permitting-wells/terminology |
+| Ryan James  | CA    | ca-wb-wwgd  | Yes        |No     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
+| Ryan James  | CO    | co-cdr-g    | Yes        | Yes   |https://www.coloradoriverdistrict.org/water-glossary/ |
+| Ryan James  | ID    | id-dwr-wro  | Yes        | Yes   |https://idwr.idaho.gov/water-rights/overview.html |
+| Ryan James  | NM    | nm-wrap-g   | Yes        | Yes   |https://www.ose.state.nm.us/WR/glossary.php |
+| Ryan James  | UT    | ut-udwq-g   | Yes        | Yes   |https://deq.utah.gov/water-quality/glossary-utah-ground-water-quality-protection-program |
+| Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
+| Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
+| Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
+|             |       |	            | No         |       |https://www.owrb.ok.gov/util/glossary.php |
+|             |       |	            | No         |       |https://idwr.idaho.gov/terminology.html |
+|             |       |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
+|             |       |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
+|             |       |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
+|             |       |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
+|             |       |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
+|             |       |	            | No	       |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
+|             |       |	            | No	       |       |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
+|             |       |	            | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
+|             |       |	            | No	       |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
+|             |       |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
+|             |USBR   |  usbr-g     | No         |       |https://www.usbr.gov/library/glossary/ |
+|             |USGS   |  usbr-g     | No         |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
