@@ -5,8 +5,8 @@ account: internetofwater
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1047555
-bundleId: 2586529
+bundleId: 2610683
 url: https://internetofwater.shinyapps.io/Glossary/
-when: 1573663440.14826
+when: 1574455447.22639
 asMultiple: FALSE
 asStatic: FALSE

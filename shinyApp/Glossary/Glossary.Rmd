@@ -5,6 +5,7 @@ output:
     orientation: columns
     vertical_layout: fill
     logo: iow_logo_horizontal_rgb.png
+    favicon: 
     theme: readable
 runtime: shiny
 ---
@@ -71,10 +72,9 @@ library(googledrive)
 library(data.table)
 library(dtplyr)
 
-
-#drive_auth_configure(api_key = read.csv("keys/ket.txt",header=FALSE,stringsAsFactors = FALSE)[,1])
+ #tags$head(tags$style(HTML("a {color: red}")))#drive_auth_configure(api_key = read.csv("keys/ket.txt",header=FALSE,stringsAsFactors = FALSE)[,1])
 drive_auth(path="keys/alien-craft-256317-2d1bd22cd2c3.json")
-
+1
 
 
 downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {
@@ -104,38 +104,66 @@ select ?uri ?Term ?Source ?voclink ?Organization ?Definition ?Theme  WHERE {
 
 data<-SPARQL(endpoint,q,format="csv")$results
 data[] <- lapply(data, as.character)
+data<-lazy_dt(data)
+data<-arrange(data, Term)
 
-
-Terms<-distinct(data[c("uri","Term","Source")])%>%arrange(Term)
+#Terms<-unique(data[c("uri","Term","Source")])%>%arrange(Term)
+Terms<-distinct(select(data,uri,Term,Source))%>%as.data.frame
 Terms$Term<-paste0(Terms$Term," (",Terms$Source,")")
-data$Source <- paste0('<a href=', data$voclink,' target="_blank" rel="noopener"','>',data$Source,'</a>')
-data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
-data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]%>%arrange(Term)
-
+data <- mutate(data,Source = paste0('<a href=', voclink,' target="_blank" rel="noopener"','>',Source,'</a>'),
+               Term=paste0(Term,'<a href=', uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>'))
+#data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
+#data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]%>%arrange(Term)
+data<-select(data,uri,Term,Definition,Source,voclink,Organization,Theme)
 #data2 <- as.data.table(data)
 
-
+orgs<-select(data,Organization,Source)%>%distinct()%>%as.data.frame()%>%arrange(Organization,Source)
 ```
 User Guide
 =====================================  
 
-Column {data-width=1000}
+Column {data-width=650}
 -----------------------------------------------------------------------
 ### Welcome
 
-THis resource is about ....
+This is the Water Terminology Collection of the Internet of Water. Through this application, we aim to provide access to the vocabularies used by Federal, State, Tribal, Local, and private entities engaged in water management, science, and use. In the context of the Water Terminology Collection, the term 'vocabulary' refers to a list of terms with corresponding definitions in use by a particular organization. A key use of this application is to serve as a reference for <b>synonyms</b> and <b>homonyms</b> in vocabularies across the water sector. 
 
-<h3>User Guide</h3>
+<b>Synonyms</b> are terms that have the same definition. For example, "Car" and "Automobile". 
 
-Three Components ....
+<b>Homonyms</b> are terms that have the same spelling, that may or may not have the same definition. For example, "Car" can refer to an automobile in the vocabulary of a car dealership, while "Car" refers to train car in the vocabulary of a railroad company.
 
-1. 
+Sometimes, synonyms are also homonyms. For example, the term "Car" as used in a magazine about automobiles will have the same definition as the term "Car" as used by a car dealership. 
+ 
+There is a lack of shared vocabulary between all of the various public agencies and private actors in the water space, with many synonyms and homonyms. It is important to keep track of important synonyms and homonyms for those interacting with people from external organizations to be able to ensure that they understand each other.
 
-2. 
+<h4>User Guide</h4>
 
-3.
+The Water Terminology Collection has three components described below. You can also watch this Youtube video [link pending] for a more detailed look at everything the Collection has to offer.
+
+1. The <b><a href="http://purl.org/iow/glossarybrowser#section-main-term-browser">Main Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
+
+2. The <b><a href="http://purl.org/iow/glossarybrowser#section-help-identify-synonyms">Help Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b>Main Term Browser</b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
+
+3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-your-vocabulary">Submit Your Vocabulary</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### Vocabularies represented
+
+Each of the vocabularies currently represented are shown the scrollable table below. If you don't see a vocabulary and/or organization that you are familar with here, please consider submitting that vocabulary through the 'Submit Your Vocabulary' facility we provide (see right-most button in the top navigation bar). 
 
 
+```{r}
+
+ output$orgtable = DT::renderDataTable({
+   DT::datatable(orgs, extensions = c('Buttons','Responsive'),options = list(dom='Bit', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('vocabularies'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
+   )
+ })
+
+DT::dataTableOutput('orgtable')
+style = " overflow-y: auto; overflow-x: auto" 
+
+```
 
 
 Main Term Browser
@@ -149,13 +177,22 @@ Column {data-width=650}
 
 ```{r}
 
-ch<-unique(data[order(data$Theme),]$Theme)
+#ch<-distinct(data[order(data$Theme),]$Theme)
+ch<-as.data.frame(data%>%arrange(Theme)%>%distinct(Theme))$Theme
 ch<-c(ch,"Other")
-data$Theme[which(is.na(data$Theme))]<-"Other"
+
+ch2<-as.data.frame(data%>%arrange(Organization)%>%distinct(Organization))$Organization
+
+data<-mutate(data,Theme = ifelse(!is.na(Theme), Theme, "Other"))%>% as.data.frame()
+
+#data$Theme[which(is.na(data$Theme))]<-"Other"
+#data2<-as.data.frame(data)
 d <- reactive({
-  data%<>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)
+  #data <- data[Organization %in% input$filter2 & Theme %in% input$filter]
+  data%>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)
 })
 
+#dt<- reactive ({as.data.frame(d())})
 
 fluidRow(column(1,pickerInput(
    inputId = "filter",
@@ -168,8 +205,8 @@ fluidRow(column(1,pickerInput(
 column(1,pickerInput(
    inputId = "filter2",
  #  label = "Organizations(s)",
-    choices = unique(data[order(data$Organization),]$Organization),
-   selected=unique(data[order(data$Organization),]$Organization), 
+    choices = ch2,
+   selected= ch2, 
    multiple=TRUE, width=300, options = list(
       `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)", `live-search`=TRUE)
 ),offset=3))
