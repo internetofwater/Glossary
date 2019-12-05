@@ -85,9 +85,9 @@ downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...) 
 
 ## big table
 #g<-rdf_parse("glossary.ttl",format="turtle")
-endpoint<-"http://35.238.222.96:7200/repositories/Synonym_search"
+endpoint<-"http://35.238.222.96:7200/repositories/Terminology_Collection_Public"
 q<-'PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX : <http://purl.org/iow/Glossary/>
+PREFIX : <http://purl.org/iow/terms/>
 
 select ?uri ?Term ?Source ?voclink ?Organization ?Definition ?Theme  WHERE { 
 	?uri a skos:Concept .
@@ -108,8 +108,8 @@ data<-lazy_dt(data)
 data<-arrange(data, Term)
 
 #Terms<-unique(data[c("uri","Term","Source")])%>%arrange(Term)
-Terms<-distinct(select(data,uri,Term,Source))%>%as.data.frame
-Terms$Term<-paste0(Terms$Term," (",Terms$Source,")")
+Terms<-distinct(select(data,uri,Term,Source))%>%mutate(Term=paste0(Term, " (", Source,")"))%>%as.data.frame()
+#Terms$Term<-paste0(Terms$Term," (",Terms$Source,")")
 data <- mutate(data,Source = paste0('<a href=', voclink,' target="_blank" rel="noopener"','>',Source,'</a>'),
                Term=paste0(Term,'<a href=', uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>'))
 #data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
@@ -118,6 +118,16 @@ data<-select(data,uri,Term,Definition,Source,voclink,Organization,Theme)
 #data2 <- as.data.table(data)
 
 orgs<-select(data,Organization,Source)%>%distinct()%>%as.data.frame()%>%arrange(Organization,Source)
+#ch<-distinct(data[order(data$Theme),]$Theme)
+ch<-as.data.frame(data%>%arrange(Theme)%>%distinct(Theme))$Theme
+ch<-c(ch,"Other")
+
+ch2<-as.data.frame(data%>%arrange(Organization)%>%distinct(Organization))$Organization
+
+data<-mutate(data,Theme = ifelse(!is.na(Theme), Theme, "Other"))
+data<-as.data.frame(data)
+#keycols=c("Organization","Theme")
+#data<-setkey(data,"Theme","Organization")
 ```
 User Guide
 =====================================  
@@ -140,11 +150,11 @@ There is a lack of shared vocabulary between all of the various public agencies 
 
 The Water Terminology Collection has three components described below. You can also watch this Youtube video [link pending] for a more detailed look at everything the Collection has to offer.
 
-1. The <b><a href="http://purl.org/iow/glossarybrowser#section-main-term-browser">Main Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
+1. The <b><a href="http://purl.org/iow/glossarybrowser#section-term-browser">Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
 
-2. The <b><a href="http://purl.org/iow/glossarybrowser#section-help-identify-synonyms">Help Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b>Main Term Browser</b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
+2. The <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b>Main Term Browser</b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
 
-3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-your-vocabulary">Submit Your Vocabulary</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
+3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-vocabularies">Submit Vocabularies</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
 
 Column {data-width=350}
 -----------------------------------------------------------------------
@@ -156,17 +166,17 @@ Each of the vocabularies currently represented are shown the scrollable table be
 ```{r}
 
  output$orgtable = DT::renderDataTable({
-   DT::datatable(orgs, extensions = c('Buttons','Responsive'),options = list(dom='Bit', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('vocabularies'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(orgs, extensions = c('Buttons','Responsive'),options = list(dom='Bit',deferRender=TRUE, scroller=TRUE, buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('vocabularies'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
 DT::dataTableOutput('orgtable')
-style = " overflow-y: auto; overflow-x: auto" 
+#style = " overflow-y: auto; overflow-x: auto" 
 
 ```
 
 
-Main Term Browser
+Term Browser
 =====================================  
 
 Column {data-width=650}
@@ -177,19 +187,15 @@ Column {data-width=650}
 
 ```{r}
 
-#ch<-distinct(data[order(data$Theme),]$Theme)
-ch<-as.data.frame(data%>%arrange(Theme)%>%distinct(Theme))$Theme
-ch<-c(ch,"Other")
 
-ch2<-as.data.frame(data%>%arrange(Organization)%>%distinct(Organization))$Organization
-
-data<-mutate(data,Theme = ifelse(!is.na(Theme), Theme, "Other"))%>% as.data.frame()
 
 #data$Theme[which(is.na(data$Theme))]<-"Other"
-#data2<-as.data.frame(data)
+#data<-as.data.table(data)
 d <- reactive({
-  #data <- data[Organization %in% input$filter2 & Theme %in% input$filter]
-  data%>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)
+  #unique(data[((data$Organization %in% input$filter2) & (data$Theme %in% input$filter)),],by="uri")
+  #       %>%lazy_dt(data)%>%distinct(uri,.keep_all=T)%>%as_tibble()
+ data%>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)#%>%as.data.frame()
+ #return(data2)
 })
 
 #dt<- reactive ({as.data.frame(d())})
@@ -220,7 +226,7 @@ output$table = DT::renderDataTable({
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
     dom='Bti', buttons = list(list(extend = 'csv',text="Download CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
-})
+}, server=TRUE)
 
 DT::dataTableOutput('table')
 
@@ -240,13 +246,13 @@ Column {data-width=350}
 ```{r}
  s = reactive({as.character(d()[input$table_rows_selected,"uri"])})
  synparse<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX : <http://purl.org/iow/Glossary/>
+PREFIX : <http://purl.org/iow/terms/>
 select ?uri where{
     <',s(), '> skos:exactMatch ?uri
 }')})
  syn_uris<-reactive({SPARQL(endpoint,synparse(),format="csv")$result$uri})
 
- syn_d<-reactive({data<-data%>%filter(uri %in% syn_uris())})
+ syn_d<-reactive({data<-data%>%filter(uri %in% syn_uris())%>%distinct(uri,.keep_all=T)})
 
 
  output$syntable = DT::renderDataTable({
@@ -260,7 +266,7 @@ DT::dataTableOutput('syntable')
 
 ```
 
-Help Identify Synonyms
+Identify Synonyms
 =====================================  
 
 
@@ -270,7 +276,7 @@ Column {data-width=650}
 
 ### Propose Synonyms
 
-A number of vocabularies of different organizations are rerpresented in this glossary. We need help identifying which terms have synonymous definitions across these vocabularies.
+A number of vocabularies of different organizations are rerpresented in this collection. We need help identifying which terms have synonymous definitions across these vocabularies.
 
 <h5>Step 1: Search and select concepts for which to identify synonyms</h5>
 
@@ -289,10 +295,10 @@ options = list(  size = 10, `live-search` = TRUE)
 selected_uri<-reactive({as.character(Terms$uri[which(Terms$Term == input$search)])})
 ```
 
-<h5>Step 2. Click all rows corresponding to concepts you believe are synonymous with the concepts selected in Step 1.</h5> The glossary has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected concept, as well as all other concepts in the glossary associated with the same term (i.e. homonyms). Synonyms that have already been identified and approved are not shown.
+<h5>Step 2. Click all rows corresponding to concepts you believe are synonymous with the concepts selected in Step 1.</h5> The application has provided the 50 terms with the most commonality in the word content of definitions ("score")  to the selected concept, as well as all other concepts in the collection associated with the same term (i.e. homonyms). Synonyms that have already been identified and approved are not shown.
 ```{r}
 
-endpoint_sim<-"http://35.238.222.96:7200/repositories/Synonym_search"
+endpoint_sim<-"http://35.238.222.96:7200/repositories/Terminology_Collection_Public"
 
 
 
@@ -336,7 +342,7 @@ SELECT ?uri ?Term ?Definition ?Vocabulary ?score {
 #hom_uris<-reactive({SPARQL(endpoint_sim,hom_parse(),format="csv")$result%>%mutate(score=round(score,2))})
 
 synparse2<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX : <http://purl.org/iow/Glossary/>
+PREFIX : <http://purl.org/iow/terms/>
 select ?uri where{
     <',selected_uri(), '> skos:exactMatch ?uri
 }')})
@@ -436,20 +442,20 @@ actionBttn(
   upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/",as.character(Terms$Term[which(Terms$Term == input$search)]),"-",substr(as.character(Terms$uri[which(Terms$Term == input$search)]),30,100),"-",input$emailInput,"-synonyms_submit"),type="spreadsheet")
     # upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals-",Sys.time()),type="spreadsheet",overwrite=TRUE)
   
-    sendSweetAlert(session=session,title="Synonyms proposed!", text="Thank you for your contribution! Press 'ok' to continue browsing the glossary. Feel free to submit synonym proposals for more concepts.",type="success")
+    sendSweetAlert(session=session,title="Synonyms proposed!", text="Thank you for your contribution! Press 'ok' to continue browsing the Terminology Collection. Feel free to submit synonym proposals for more concepts.",type="success")
 
 
   })
 ```
 
 
-Submit Your Vocabulary
+Submit Vocabularies
 =====================================  
 
 Column 
 -----------------------------------------------------------------------
 
-### Submit your vocabulary
+### Submit a vocabulary
 
 <p style="font-size: 24px">We seek to compare words (and definitions) used by different organizations to describe aspects of water, including water quantity, quality, use, infrastructure, and policy. We are in the process of collecting vocabularies about water in use by public water resources and quality agencies, NGOs, and private-sector organizations. If you did not see your organization's vocabulary/ies represented in our Main Term Browser tab, please consider contributing a vocabulary to our Collection! </p>
 

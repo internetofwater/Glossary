@@ -1,4 +1,4 @@
-prefix : <http://purl.org/iow/Glossary/>
+prefix : <http://purl.org/iow/terms/>
 prefix grddl: <http://www.w3.org/2003/g/data-view#>
 prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
@@ -30,8 +30,8 @@ rule it.uniroma2.art.Sheet2RDFAnnotation id:row {
 	}
 	graph = {
 		$subject rdf:type skos:Concept .
-		$subject skos:inScheme :usgs-wut .
-		$subject skos:topConceptOf :usgs-wut .
+		$subject skos:inScheme :adwr-d .
+		$subject skos:topConceptOf :adwr-d .
 		OPTIONAL {$Theme1 rdf:type skos:Collection .}
 		OPTIONAL {$Theme2 rdf:type skos:Collection .}
 		OPTIONAL {$Theme3 rdf:type skos:Collection .}
