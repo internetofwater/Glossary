@@ -1,0 +1,12 @@
+name: WaterTerminologyCollection
+title: WaterTerminologyCollection
+username:
+account: internetofwater
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1594462
+bundleId: 2662821
+url: https://internetofwater.shinyapps.io/WaterTerminologyCollection/
+when: 1576179399.41458
+asMultiple: FALSE
+asStatic: FALSE

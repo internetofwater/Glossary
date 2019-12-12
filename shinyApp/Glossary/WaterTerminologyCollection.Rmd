@@ -22,6 +22,10 @@ $('.navbar-logo').wrap('<a href="http://internetofwater.org">');
 
 }
 
+iframe {
+    display: block;
+    margin: 30px auto 30px auto;
+}
                   
 <!-- .navbar a { -->
 <!--   color: white; -->
@@ -66,7 +70,7 @@ library(DT)
 library(urltools)
 #library(rdflib)
 library(shinyWidgets)
-#library(igraph)
+library(igraph)
 library(SPARQL)
 library(googledrive)
 library(data.table)
@@ -115,6 +119,10 @@ data <- mutate(data,Source = paste0('<a href=', voclink,' target="_blank" rel="n
 #data$Term <- paste0(data$Term,'<a href=', data$uri,' target="_blank" rel="noopener"','> ',as.character(icon("share", lib = "glyphicon")),'</a>')
 #data<-data[c("uri","Term","Definition","Source","voclink","Organization","Theme")]%>%arrange(Term)
 data<-select(data,uri,Term,Definition,Source,voclink,Organization,Theme)
+
+
+#})
+
 #data2 <- as.data.table(data)
 
 orgs<-select(data,Organization,Source)%>%distinct()%>%as.data.frame()%>%arrange(Organization,Source)
@@ -126,6 +134,31 @@ ch2<-as.data.frame(data%>%arrange(Organization)%>%distinct(Organization))$Organi
 
 data<-mutate(data,Theme = ifelse(!is.na(Theme), Theme, "Other"))
 data<-as.data.frame(data)
+
+syn_parse<-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?uri ?uri2 {
+ ?uri skos:exactMatch ?uri2
+
+}"
+
+#clus<-reactive({
+syn_graph<-SPARQL(endpoint,syn_parse,format="csv")$result%>%mutate(uri=as.character(uri),uri2=as.character(uri2))
+
+syn_graph<-as.matrix(syn_graph)
+syn_graph<-graph_from_edgelist(syn_graph)
+clu<-as.data.frame(components(syn_graph)$membership)
+clu$uri<-rownames(clu)
+rownames(clu)<-NULL
+colnames(clu)<-c("Definition Group","uri")
+clu<-clu[c(2,1)]
+
+data<-left_join(data,clu,by="uri")
+
+
+###Create synonym graphs
+
+
 #keycols=c("Organization","Theme")
 #data<-setkey(data,"Theme","Organization")
 ```
@@ -136,25 +169,28 @@ Column {data-width=650}
 -----------------------------------------------------------------------
 ### Welcome
 
-This is the Water Terminology Collection of the Internet of Water. Through this application, we aim to provide access to the vocabularies used by Federal, State, Tribal, Local, and private entities engaged in water management, science, and use. In the context of the Water Terminology Collection, the term 'vocabulary' refers to a list of terms with corresponding definitions in use by a particular organization. A key use of this application is to serve as a reference for <b>synonyms</b> and <b>homonyms</b> in vocabularies across the water sector. 
+This is the Water Terminology Collection of the Internet of Water. Through this application, we aim to provide access to the vocabularies used by Federal, State, Tribal, Local, and private entities engaged in water management, science, and use. In the context of the Water Terminology Collection, the term 'vocabulary' refers to a list of terms with corresponding definitions in use by a particular organization. 
 
-<b>Synonyms</b> are terms that have the same definition. For example, "Car" and "Automobile". 
-
-<b>Homonyms</b> are terms that have the same spelling, that may or may not have the same definition. For example, "Car" can refer to an automobile in the vocabulary of a car dealership, while "Car" refers to train car in the vocabulary of a railroad company.
-
-Sometimes, synonyms are also homonyms. For example, the term "Car" as used in a magazine about automobiles will have the same definition as the term "Car" as used by a car dealership. 
- 
 There is a lack of shared vocabulary between all of the various public agencies and private actors in the water space, with many synonyms and homonyms. It is important to keep track of important synonyms and homonyms for those interacting with people from external organizations to be able to ensure that they understand each other.
 
 <h4>User Guide</h4>
 
-The Water Terminology Collection has three components described below. You can also watch this Youtube video [link pending] for a more detailed look at everything the Collection has to offer.
+The Water Terminology Collection has three components described below. 
 
 1. The <b><a href="http://purl.org/iow/glossarybrowser#section-term-browser">Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
 
-2. The <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b>Main Term Browser</b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
+
+<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+2. The <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b><a href="http://purl.org/iow/glossarybrowser#section-term-browser">Term Browser</a></b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
+
+<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-vocabularies">Submit Vocabularies</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
+
+<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Column {data-width=350}
 -----------------------------------------------------------------------
@@ -188,15 +224,18 @@ Column {data-width=650}
 ```{r}
 
 
+#proxy<-DT::dataTableProxy("table")
 
 #data$Theme[which(is.na(data$Theme))]<-"Other"
 #data<-as.data.table(data)
 d <- reactive({
   #unique(data[((data$Organization %in% input$filter2) & (data$Theme %in% input$filter)),],by="uri")
   #       %>%lazy_dt(data)%>%distinct(uri,.keep_all=T)%>%as_tibble()
- data%>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)#%>%as.data.frame()
+ data%>%filter(Theme %in% input$filter & Organization %in% input$filter2  )%>%distinct(uri,.keep_all=T)%>%as.data.frame()
  #return(data2)
 })
+
+#observeEvent(input$filter, {replaceData(proxy,d())})
 
 #dt<- reactive ({as.data.frame(d())})
 
@@ -223,10 +262,18 @@ column(1,pickerInput(
 #d2 <- reactive({d()[c("Concept","Definition")]})
 
 output$table = DT::renderDataTable({
-  DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
+  #D<-data%>%as.data.frame()%>%distinct(uri,.keep_all=TRUE)
+  DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6,7), visible = FALSE),list(targets=c(0,3,4,5,6,7),searchable=FALSE)),
     dom='Bti', buttons = list(list(extend = 'csv',text="Download CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
-}, server=TRUE)
+}, server=TRUE
+
+
+)
+
+
+#proxy<-observe({replaceData(proxy,d())})
+
 
 DT::dataTableOutput('table')
 
@@ -240,29 +287,52 @@ DT::dataTableOutput('table')
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Synonyms of selected term
+### Related Terms
 
+Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the eextent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
 
 ```{r}
+
+
  s = reactive({as.character(d()[input$table_rows_selected,"uri"])})
- synparse<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX : <http://purl.org/iow/terms/>
-select ?uri where{
-    <',s(), '> skos:exactMatch ?uri
+#  synparse<-reactive({paste0('PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+# PREFIX : <http://purl.org/iow/terms/>
+# select ?uri where{
+#     <',s(), '> skos:exactMatch ?uri
+# }')})
+#  
+ 
+hom_parse1<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
+PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
+PREFIX pubo: <http://ontology.ontotext.com/publishing#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?uri ?uri2 {
+    ?search a inst:term_similarity ;
+        :searchDocumentID <',s(),'>;
+        :documentResult ?result .
+ ?result :value ?uri ;
+            :score ?score.
+     FILTER(?score >= 0.98) .
+        OPTIONAL{ ?uri skos:exactMatch ?uri2.} 
 }')})
- syn_uris<-reactive({SPARQL(endpoint,synparse(),format="csv")$result$uri})
-
- syn_d<-reactive({data<-data%>%filter(uri %in% syn_uris())%>%distinct(uri,.keep_all=T)})
-
+res<-reactive({SPARQL(endpoint,hom_parse1(),format="csv")$result})
+#res2<-SPARQL(endpoint,hom_parse1(),format="csv")$result$uri2
+u1<-reactive({unique(as.character(res()$uri))})
+u2<-reactive({unique(as.character(res()$uri2))})
+ syn_d<-reactive({data%>%filter(uri %in% u1() | uri %in% u2())%>%distinct(uri,.keep_all=T)%>%arrange(`Definition Group`,Term)})
+ 
+ #hom_syn_d<-reactive({data%>%filter(uri %in% hom_syn_graph()$uri)%>%distinct(uri,.keep_all=TRUE)%>%right_join(by="uri")}) #left join in subgraph components
+#output$select = renderText(u1())
 
  output$syntable = DT::renderDataTable({
-   DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
+   DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,3,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
      dom='Bt', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
 DT::dataTableOutput('syntable')
-
+#textOutput('select')
 
 ```
 
@@ -405,7 +475,7 @@ Column {data-width=350}
 ### Submit proposed synoynms
 
 <h5>Step 4. Submit synonym suggestions</h5>
-Once you have reviewed your choices of synonyms, please provide your name and email address and what organization you represent. Then, click the green button below to submit!
+Once you have reviewed your choices of synonyms, please provide your name and email address and what organization you represent. Also, feel free to provide any comments explaining your choices. Then, click the green button below to submit!
 
 ```{r}
 
@@ -415,6 +485,8 @@ Once you have reviewed your choices of synonyms, please provide your name and em
 textInput("nameInput", "Last name, First name")
 textInput("emailInput", "E-mail address")
 textInput("orgInput", "Organization")
+textAreaInput("commentInput", "Comments", value = "", width = "110%", height = "500%",
+  cols = NULL, rows = NULL, placeholder = NULL, resize = "both")
 
 actionBttn(
    inputId = "do2",
@@ -435,8 +507,14 @@ actionBttn(
   # drive_download("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals",path="synonyms.csv",overwrite=TRUE)
    
    #sheet<-read.csv("synonyms.csv",header=TRUE)
+   sheet<-cbind(sel_syn()$uri[1],sel_syn()$Definition[1],sel_syn(),input$nameInput,input$emailInput,input$orgInput,input$commentInput)
    
-   write.csv(cbind(sel_syn()$uri[1],sel_syn()$Definition[1],sel_syn(),input$nameInput,input$emailInput,input$orgInput),"synonyms.csv",row.names=FALSE)
+   colnames(sheet)<-c("Selected URI","Selected Definition","Proposed URI","Proposed Term","Proposed Definition","Proposed Vocabulary","TF-IDF Score","Proposer Name","Proposer Email", "Proposer Organization", "Comments")
+   
+   sheet<-sheet[c("Selected URI","Proposed URI", "Selected Definition","Proposed Term","Proposed Definition","Proposed Vocabulary","TF-IDF Score","Proposer Name","Proposer Email", "Proposer Organization", "Comments")]
+   
+   
+   write.csv(sheet,"synonyms.csv",row.names=FALSE)
    
    sendSweetAlert(session=session,title="Uploading...", text="Please wait while your contribution is being prepared and uploaded.",type="info", btn_labels="Wait")
   upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/",as.character(Terms$Term[which(Terms$Term == input$search)]),"-",substr(as.character(Terms$uri[which(Terms$Term == input$search)]),30,100),"-",input$emailInput,"-synonyms_submit"),type="spreadsheet")
