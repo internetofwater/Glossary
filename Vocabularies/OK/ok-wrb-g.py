@@ -1,7 +1,7 @@
-#Date Created: 10/28/2019
+#Date Created: 12/19/2019
 #Purpose: To extract text from html file (website) and export to xlsx file.
-#Notes: # UDWQ glossary.
-        # Easier to grab specific text, then split name and definition information into two separate lists.
+#Notes: # OKWRB glossary.
+
 
 
 #Needed Modules
@@ -25,10 +25,7 @@ soup = BeautifulSoup(html, 'html.parser')  #create a beautifulSoup obect based o
 
 #Storage Variables
 ############################################################################
-s1 = ''  # empty string
 lst1 = []  # empty list for all text storage
-lst2 = []  # empty list for term name storage
-lst3 = []  # empty list for term def storage
 
 
 #Gathering Data
@@ -54,8 +51,6 @@ if result.status_code == 200:  # a valuve of 200 indicates yes, a 403 forbidden 
     glossary.rename(columns={0:'Term', 1:'Definition'}, inplace=True)
     glossary.set_index('Term', inplace=True)
     glossary.drop('-- back to top --', inplace=True)
-
-
 
 
     # Exporting Text to xlsx file.
