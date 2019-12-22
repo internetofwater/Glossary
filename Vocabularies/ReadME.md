@@ -106,7 +106,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Joseph Brewer | OK  | ok-owrb-	  | No         | No    |https://www.owrb.ok.gov/util/glossary.php |
+| Joseph Brewer | OK  | ok-owrb-	  | Yes         | No    |https://www.owrb.ok.gov/util/glossary.php |
 | Joseph Brewer | OR  |	id-idwr-    | No         | No    |https://idwr.idaho.gov/terminology.html |
 |             |       |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
 |             |       |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
