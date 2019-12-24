@@ -106,9 +106,9 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Joseph Brewer | OK  | ok-owrb-	  | Yes         | No    |https://www.owrb.ok.gov/util/glossary.php |
-| Joseph Brewer | OR  |	id-idwr-    | No         | No    |https://idwr.idaho.gov/terminology.html |
-|             |       |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
+| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | No    |https://www.owrb.ok.gov/util/glossary.php |
+| Joseph Brewer | ID  |	id-idwr-t   | Yes        | No    |https://idwr.idaho.gov/terminology.html |
+| Joseph Brewer | OR  |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
 |             |       |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
 |             |       |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
 |             |       |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
@@ -120,3 +120,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |       |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |       |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
+| Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
+| Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
+| Joseph Brewer |     |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
+
