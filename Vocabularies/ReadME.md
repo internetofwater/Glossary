@@ -120,7 +120,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |       |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |       |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
-| Joseph Brewer | MTDNRC |            | No       |       | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
-| Joseph Brewer | MTDNRC |            | No       |       | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
-| Joseph Brewer | TWDB |            | No         |       | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
-|
+| Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
+| Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
+| Joseph Brewer |     |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
+
