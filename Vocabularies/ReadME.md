@@ -98,7 +98,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | AZ    | az-dwr      | Yes        | Yes   |https://new.azwater.gov/dictionary  |
 | Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes   |https://new.azwater.gov/permitting-wells/terminology |
 | Ryan James  | AZ    | az-dwr-amdsbt | No       | No    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
-| Ryan James  | CA    | ca-wb-wwgd  | Yes        |No     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
+| Ryan James  | CA    | ca-wb-wwgd  | Yes        |Yes     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 | Ryan James  | CO    | co-cdr-g    | Yes        | Yes   |https://www.coloradoriverdistrict.org/water-glossary/ |
 | Ryan James  | ID    | id-dwr-wro  | Yes        | Yes   |https://idwr.idaho.gov/water-rights/overview.html |
 | Ryan James  | NM    | nm-wrap-g   | Yes        | Yes   |https://www.ose.state.nm.us/WR/glossary.php |
@@ -106,8 +106,8 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | No    |https://www.owrb.ok.gov/util/glossary.php |
-| Joseph Brewer | ID  |	id-idwr-t   | Yes        | No    |https://idwr.idaho.gov/terminology.html |
+| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | Yes    |https://www.owrb.ok.gov/util/glossary.php |
+| Joseph Brewer | ID  |	id-idwr-t   | Yes        | Yes    |https://idwr.idaho.gov/terminology.html |
 | Joseph Brewer | OR  |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
 |             |       |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
 |             |       |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
@@ -118,7 +118,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |       |	            | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |       |	            | No	       |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 |             |       |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
-|             |USBR   |  usbr-rlg   | Yes        |       |https://www.usbr.gov/library/glossary/ |
+|             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
 | Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |     |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
