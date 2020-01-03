@@ -115,7 +115,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
 |             |    TX   |	            | No	       |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
 |             |    TX   |	            | No	       |       |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
-|             |    TX   |	            | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
+| Joseph Brewer |  TX   |	            | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	       |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 |             |    SD   |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
