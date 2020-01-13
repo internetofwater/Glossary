@@ -10,7 +10,7 @@ output:
 runtime: shiny
 ---
 <script>
-$('.navbar-logo').wrap('<a href="http://internetofwater.org">');
+$('.navbar-logo').wrap('<a href="http://internetofwater.org" target="_blank">');
 </script>
 
 <style type="text/css">
@@ -63,8 +63,11 @@ iframe {
 
 
 ```{r global, include=FALSE}
+
+
 library(flexdashboard)
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(shiny)
 library(DT)
 library(urltools)
@@ -160,7 +163,6 @@ data<-left_join(data,clu,by="uri")
 
 
 
-
 ```
 User Guide
 =====================================  
@@ -251,7 +253,7 @@ column(1,pickerInput(
    inputId = "filter2",
  #  label = "Organizations(s)",
     choices = ch2,
-   selected= ch2, 
+   selected= ch2,
    multiple=TRUE, width=300, options = list(
       `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)", `live-search`=TRUE)
 ),offset=3))
@@ -264,7 +266,7 @@ column(1,pickerInput(
 output$table = DT::renderDataTable({
   #D<-data%>%as.data.frame()%>%distinct(uri,.keep_all=TRUE)
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6,7), visible = FALSE),list(targets=c(0,3,4,5,6,7),searchable=FALSE)),
-    dom='Bti', buttons = list(list(extend = 'csv',text="Download CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
+    dom='Bti', buttons = list(list(extend = 'csv',text="Download Current Table as CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
 }, server=TRUE
 
@@ -289,7 +291,7 @@ Column {data-width=350}
 
 ### Related Terms
 
-Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the eextent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
+Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
 
 ```{r}
 
@@ -333,7 +335,7 @@ u2<-reactive({unique(as.character(res()$uri2))})
 
  output$syntable = DT::renderDataTable({
    DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,2,4,5,6), visible = FALSE),list(targets=c(0,2,4,5,6),searchable=FALSE)),
-     dom='Bt', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
+     dom='Bt', buttons = list(list(extend = 'csv',text="Download Related Terms as CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
