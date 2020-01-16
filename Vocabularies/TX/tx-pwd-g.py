@@ -1,6 +1,6 @@
 #Date Created: 12/27/2019
 #Purpose: To extract text from html file (website) and export to xlsx file.
-#Notes: # OKWRB glossary.
+#Notes: # TPWD glossary.
 
 
 

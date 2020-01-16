@@ -62,7 +62,7 @@ if result.status_code == 200:  # a valuve of 200 indicates yes, a 403 forbidden 
     # Cleaning Text
     ############################################################################
     print("Cleaning text.")
-    # OWRB Specific:  split on " - ".  Spaces are neccessary to include defs with '-' in them.  Ex "Off-bank"
+    # TCEQ Specific:  split on " - ".  Spaces are neccessary to include defs with '-' in them.  Ex "Off-bank"
     glossary.drop(columns='index', axis= 0, inplace=True)
 
 
