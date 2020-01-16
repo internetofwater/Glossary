@@ -10,7 +10,7 @@ output:
 runtime: shiny
 ---
 <script>
-$('.navbar-logo').wrap('<a href="http://internetofwater.org">');
+$('.navbar-logo').wrap('<a href="http://internetofwater.org" target="_blank">');
 </script>
 
 <style type="text/css">
@@ -63,8 +63,11 @@ iframe {
 
 
 ```{r global, include=FALSE}
+
+
 library(flexdashboard)
-library(tidyverse)
+library(dplyr)
+library(readr)
 library(shiny)
 library(DT)
 library(urltools)
@@ -80,6 +83,9 @@ library(dtplyr)
 drive_auth(path="keys/alien-craft-256317-2d1bd22cd2c3.json")
 1
 
+drive_download(file=as_id("1mxAcDiiAUQemvkJXdDwI_JKM0taK7Wb0EviNsN4gnok"), type="csv", overwrite=TRUE)
+synonyms_csv<-read_csv("synonyms.csv")
+synonyms_csv<-select(synonyms_csv,`Selected URI`,`Proposed URI`,`Selected Definition`,`Proposed Term`,`Proposed Definition`, `Proposed Vocabulary`, `TF-IDF Score`,`Proposer Name`, `Proposer Email`, `Proposer Organization`, `Comments`, `Approved By`)
 
 downloadButtonRmd <- function (outputId, label = "Download", class = NULL, ...)  {
      tags$a(id = outputId, class = paste("btn btn-default shiny-download-link", 
@@ -132,7 +138,7 @@ ch<-c(ch,"Other")
 
 ch2<-as.data.frame(data%>%arrange(Organization)%>%distinct(Organization))$Organization
 
-data<-mutate(data,Theme = ifelse(!is.na(Theme), Theme, "Other"))
+data<-mutate(data,Theme = ifelse(!is.na(Theme) & Theme!="", Theme, "Other"))
 data<-as.data.frame(data)
 
 syn_parse<-"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
@@ -156,11 +162,7 @@ clu<-clu[c(2,1)]
 data<-left_join(data,clu,by="uri")
 
 
-###Create synonym graphs
 
-
-#keycols=c("Organization","Theme")
-#data<-setkey(data,"Theme","Organization")
 ```
 User Guide
 =====================================  
@@ -196,7 +198,7 @@ Column {data-width=350}
 -----------------------------------------------------------------------
 ### Vocabularies represented
 
-Each of the vocabularies currently represented are shown the scrollable table below. If you don't see a vocabulary and/or organization that you are familar with here, please consider submitting that vocabulary through the 'Submit Your Vocabulary' facility we provide (see right-most button in the top navigation bar). 
+Each of the vocabularies currently represented are shown in the scrollable table below. If you don't see a vocabulary and/or organization that you are familar with here, please consider submitting that vocabulary through the 'Submit Vocabularies' facility we provide (see right-most button in the top navigation bar). 
 
 
 ```{r}
@@ -251,7 +253,7 @@ column(1,pickerInput(
    inputId = "filter2",
  #  label = "Organizations(s)",
     choices = ch2,
-   selected= ch2, 
+   selected= ch2,
    multiple=TRUE, width=300, options = list(
       `actions-box` = TRUE, `selected-text-format`='static',`title`="Select Source(s)", `live-search`=TRUE)
 ),offset=3))
@@ -264,7 +266,7 @@ column(1,pickerInput(
 output$table = DT::renderDataTable({
   #D<-data%>%as.data.frame()%>%distinct(uri,.keep_all=TRUE)
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6,7), visible = FALSE),list(targets=c(0,3,4,5,6,7),searchable=FALSE)),
-    dom='Bti', buttons = list(list(extend = 'csv',text="Download CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
+    dom='Bti', buttons = list(list(extend = 'csv',text="Download Current Table as CSV", filename= 'main_table')),bPaginate=FALSE,scrollY='55vh',searchHighlight = TRUE), rownames=FALSE, escape=FALSE, selection="single", extensions = c('Buttons','FixedHeader'), filter="top"
   )
 }, server=TRUE
 
@@ -289,7 +291,7 @@ Column {data-width=350}
 
 ### Related Terms
 
-Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the eextent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
+Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
 
 ```{r}
 
@@ -301,6 +303,12 @@ Here you will find all of the homonyms of the selected term, as well as all syno
 #     <',s(), '> skos:exactMatch ?uri
 # }')})
 #  
+
+# syns<-reactive({data[s()==data$]})
+# 
+# for (i in 1:length(syns)){
+#   print(i)
+# }
  
 hom_parse1<-reactive({paste0('PREFIX :<http://www.ontotext.com/graphdb/similarity/>
 PREFIX inst:<http://www.ontotext.com/graphdb/similarity/instance/>
@@ -313,7 +321,7 @@ SELECT ?uri ?uri2 {
         :documentResult ?result .
  ?result :value ?uri ;
             :score ?score.
-     FILTER(?score >= 0.98) .
+     FILTER(?score >= 0.9) .
         OPTIONAL{ ?uri skos:exactMatch ?uri2.} 
 }')})
 res<-reactive({SPARQL(endpoint,hom_parse1(),format="csv")$result})
@@ -326,8 +334,8 @@ u2<-reactive({unique(as.character(res()$uri2))})
 #output$select = renderText(u1())
 
  output$syntable = DT::renderDataTable({
-   DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,3,4,5,6), visible = FALSE),list(targets=c(0,3,4,5,6),searchable=FALSE)),
-     dom='Bt', buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='70vh'), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(syn_d(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,2,4,5,6), visible = FALSE),list(targets=c(0,2,4,5,6),searchable=FALSE)),
+     dom='Bt', buttons = list(list(extend = 'csv',text="Download Related Terms as CSV", filename= paste0('synonyms','_',substr(s(),nchar(s())-10,nchar(s()))))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
@@ -505,7 +513,11 @@ actionBttn(
 
  observeEvent(input$do2, {
   # drive_download("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals",path="synonyms.csv",overwrite=TRUE)
-   
+      drive_download(file=as_id("1mxAcDiiAUQemvkJXdDwI_JKM0taK7Wb0EviNsN4gnok"), type="csv", overwrite=TRUE)
+   synonyms_csv<-read_csv("synonyms.csv")
+   synonyms_csv<-select(synonyms_csv,`Selected URI`,`Proposed URI`,`Selected Definition`,`Proposed Term`,`Proposed Definition`, `Proposed Vocabulary`, `TF-IDF Score`,`Proposer Name`, `Proposer Email`, `Proposer Organization`, `Comments`, `Approved By`)
+
+  
    #sheet<-read.csv("synonyms.csv",header=TRUE)
    sheet<-cbind(sel_syn()$uri[1],sel_syn()$Definition[1],sel_syn(),input$nameInput,input$emailInput,input$orgInput,input$commentInput)
    
@@ -513,13 +525,16 @@ actionBttn(
    
    sheet<-sheet[c("Selected URI","Proposed URI", "Selected Definition","Proposed Term","Proposed Definition","Proposed Vocabulary","TF-IDF Score","Proposer Name","Proposer Email", "Proposer Organization", "Comments")]
    
+   sheet<-bind_rows(synonyms_csv,sheet)
+   write.csv(sheet,"sheet.csv")
    
-   write.csv(sheet,"synonyms.csv",row.names=FALSE)
+   #write.csv(sheet,"synonyms.csv",row.names=FALSE)
    
    sendSweetAlert(session=session,title="Uploading...", text="Please wait while your contribution is being prepared and uploaded.",type="info", btn_labels="Wait")
-  upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/",as.character(Terms$Term[which(Terms$Term == input$search)]),"-",substr(as.character(Terms$uri[which(Terms$Term == input$search)]),30,100),"-",input$emailInput,"-synonyms_submit"),type="spreadsheet")
+  #upload <- drive_upload("sheet.csv",paste0("Glossary_Resources/",as.character(Terms$Term[which(Terms$Term == input$search)]),"-",substr(as.character(Terms$uri[which(Terms$Term == input$search)]),30,100),"-",input$emailInput,"-synonyms_submit"),type="spreadsheet")
     # upload <- drive_upload("synonyms.csv",paste0("Glossary_Resources/Synonym_Proposal_Sheets/Synonym_Proposals-",Sys.time()),type="spreadsheet",overwrite=TRUE)
-  
+   drive_update(as_id("1mxAcDiiAUQemvkJXdDwI_JKM0taK7Wb0EviNsN4gnok"), media="sheet.csv", verbose=FALSE)
+
     sendSweetAlert(session=session,title="Synonyms proposed!", text="Thank you for your contribution! Press 'ok' to continue browsing the Terminology Collection. Feel free to submit synonym proposals for more concepts.",type="success")
 
 

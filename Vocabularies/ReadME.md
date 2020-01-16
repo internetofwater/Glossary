@@ -97,7 +97,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | AZ    | az-deq      | Yes        | Yes   |https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | Yes        | Yes   |https://new.azwater.gov/dictionary  |
 | Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes   |https://new.azwater.gov/permitting-wells/terminology |
-| Ryan James  | AZ    | az-dwr-amdsbt | No       | No    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
+| Ryan James  | AZ    | az-dwr-amdsbt | Yes      | No    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
 | Ryan James  | CA    | ca-wb-wwgd  | Yes        |Yes     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 | Ryan James  | CO    | co-cdr-g    | Yes        | Yes   |https://www.coloradoriverdistrict.org/water-glossary/ |
 | Ryan James  | ID    | id-dwr-wro  | Yes        | Yes   |https://idwr.idaho.gov/water-rights/overview.html |
@@ -114,8 +114,8 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |    OR   |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
 |             |    TX   |	            | No	       |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
-|             |    TX   |	            | No	       |       |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
-| Joseph Brewer |  TX   |	            | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
+| Joseph Brewer |  TX   | tx-pwd-g    | Yes	   | No   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
+| Joseph Brewer |  TX   |	tx-ceq-t&d  | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	       |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 |             |    SD   |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
