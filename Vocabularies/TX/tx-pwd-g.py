@@ -57,7 +57,7 @@ try:
 
     #export DataFrame to excel.xlsx format
 
-    glossary.to_excel('tx-tpwd-g-export.xlsx')
+    glossary.to_excel('tx-pwd-g-export.xlsx')
 
 
 

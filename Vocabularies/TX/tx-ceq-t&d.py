@@ -12,6 +12,7 @@ import pandas as pd # parsing data and creating dataframes
 import os
 import openpyxl
 
+# Todo: Change working directory depending on working machine
 workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/TX/"
 os.chdir(workingDir)
 
@@ -72,7 +73,7 @@ if result.status_code == 200:  # a valuve of 200 indicates yes, a 403 forbidden 
 
     #export DataFrame to excel.xlsx format
 
-    glossary.to_excel('tx-tceq-t&d-export.xlsx')
+    glossary.to_excel('tx-ceq-t&d-export.xlsx')
     print("Glossary exported!")
 
 
