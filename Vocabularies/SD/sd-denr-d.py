@@ -41,18 +41,22 @@ if result.status_code == 200:  # a valuve of 200 indicates yes, a 403 forbidden 
     for blockquote in neededclass.find_all('blockquote'): # change tag information here | blockquote tags associated with definition
         lst2.append(blockquote.text) # return text only and append empty list with findings
 
-    terms = pd.DataFrame(lst1)  # convert list to dataframe for manipulation
-    definitions = pd.DataFrame(lst2)
+    terms = pd.Series(lst1)  # convert list to dataframe for manipulation
+    definitions = pd.Series(lst2)
 
     # Cleaning Text
     ############################################################################
     print("Cleaning text.")
     # OWRB Specific:  split on " - ".  Spaces are neccessary to include defs with '-' in them.  Ex "Off-bank"
-    terms = terms.replace('.', '') # strip period of end of terms
+    terms=terms.str.replace('.', '') # strip period of end of terms
     definitions.drop([91, 96, 99, 106, 107, 108, 116, 127, 129, 140, 156, 157, 158, 159], inplace = True) # drop fluff rows
-    definitions.reset_index(inplace=True)
-    definitions = definitions.replace('\n', '')
 
+    definitions = definitions.str.replace('\r\n', '')
+    definitions = definitions.str.replace('       ', '')
+
+    terms = terms.to_frame() # convert series to dataframes.  Documentation is clearer on merging
+    definitions = definitions.to_frame()
+    definitions.reset_index(inplace=True)
     glossary = pd.merge(left = terms, right=definitions, left_index=True, right_index=True)
     glossary.rename(columns={'0_x':'Term', '0_y':'Definition'}, inplace=True)  # rename columns to match Template
     glossary.drop(columns='index', axis=0, inplace=True)
