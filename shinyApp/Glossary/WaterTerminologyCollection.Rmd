@@ -189,7 +189,7 @@ The Water Terminology Collection has three components described below.
 <iframe width="448" height="253" src="https://www.youtube.com/embed/PE9Bvg2IEak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-vocabularies">Submit Vocabularies</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
+3. The <b><a href="http://purl.org/iow/terminology#section-submit-vocabularies">Submit Vocabularies</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
 
 <iframe width="448" height="253" src="https://www.youtube.com/embed/78gcnrZFxvI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -291,7 +291,7 @@ Column {data-width=350}
 
 ### Related Terms
 
-Here you will find all closely related terms of the selected term, as well as all synonyms of those terms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
+Here you will find all closely related terms of the selected term, as well as all synonyms of those terms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/terminology#section-identify-synonyms">Identify Synonyms</a></b> page.
 
 ```{r}
 
