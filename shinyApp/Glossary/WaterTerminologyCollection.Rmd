@@ -179,19 +179,19 @@ There is a lack of shared vocabulary between all of the various public agencies 
 
 The Water Terminology Collection has three components described below. 
 
-1. The <b><a href="http://purl.org/iow/glossarybrowser#section-term-browser">Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
+1. The <b><a href="http://purl.org/iow/terminology#section-term-browser">Term Browser</a></b> provides a table of terms, their definitions, and the source vocabulary, including a link to the source vocabulary if it is published online. The table can be filtered by Theme or by Source (organization). Additionally, terms can be selected. Selected terms will generate a second table showing all of that term's synonyms and homonyms. Both tables can be downloaded in csv format for future reference
 
 
-<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="448" height="253" src="https://www.youtube.com/embed/NNwASGkUNDw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-2. The <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b><a href="http://purl.org/iow/glossarybrowser#section-term-browser">Term Browser</a></b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
+2. The <b><a href="http://purl.org/iow/terminology#section-identify-synonyms">Identify Synonyms</a></b> page allows you to help us identify synonyms across the many vocabularies in the Collection. First, you can select a term in a particular vocabulary. A table of terms with definitions with similar word content is then generated. You can select terms in this table that you think are synonyms with the first term that you selected. You can then submit these terms to the Internet of Water. We will review all submissions, and incorporate these synonyms so that they can show up in the <b><a href="http://purl.org/iow/terminology#section-term-browser">Term Browser</a></b>. Please consider helping us identify synonyms. The more terms that are identified, the more useful this Collection becomes.
 
-<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="448" height="253" src="https://www.youtube.com/embed/PE9Bvg2IEak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 3. The <b><a href="http://purl.org/iow/glossarybrowser#section-submit-vocabularies">Submit Vocabularies</a></b> page allows you to submit your own vocabulary to be represented in this Collection. If you notice that an organization and/or vocabulary you are familiar with is not in this Collection, please consider submitting a vocabulary. Important vocabularies we would like to include those used by state Departments of Water Resources, Departments of Environmental Quality/ Environmental Protection Agencies, Water Rights administrators, scientific organizations, and water-related non-governmental organizations. Submitting a vocabulary can entail either providing a link to one that is published elsewhere, or uploading an excel template for terms and definitions that we have provided. This page also allows you to ask us for free assistance in publishing your organization's vocabulary online, if desired.
 
-<iframe width="448" height="253" src="https://www.youtube.com/embed/lsBft8mPDkg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="448" height="253" src="https://www.youtube.com/embed/78gcnrZFxvI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Column {data-width=350}
@@ -291,7 +291,7 @@ Column {data-width=350}
 
 ### Related Terms
 
-Here you will find all of the homonyms of the selected term, as well as all synonyms of those homonyms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
+Here you will find all closely related terms of the selected term, as well as all synonyms of those terms. This displays the extent to which similar terms are used similarly by different organizations. Terms with the same "Definition Group" are synonyms. Terms without "Definition Groups" have not been assigned any synonyms yet. Please consider helping us improve this Terminology Collection by going to the <b><a href="http://purl.org/iow/glossarybrowser#section-identify-synonyms">Identify Synonyms</a></b> page.
 
 ```{r}
 
@@ -462,7 +462,7 @@ De-select any rows in step 2 if you're not sure they are synonymous with the ter
 ```{r}
 
 #print(reactive({input$seltable_rows_selected}))
-sel_syn = reactive({distinct(uris()[c(1,input$seltable_rows_selected),])})
+sel_syn = reactive({distinct(uris2()[c(1,input$seltable_rows_selected),])})
 
  output$selsyn = DT::renderDataTable({
    DT::datatable(sel_syn(), extensions = c('Buttons','Responsive'),options = list(columnDefs = list(list(targets = c(0,3,4), visible = FALSE)),
