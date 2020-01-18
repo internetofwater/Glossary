@@ -204,7 +204,7 @@ Each of the vocabularies currently represented are shown in the scrollable table
 ```{r}
 
  output$orgtable = DT::renderDataTable({
-   DT::datatable(orgs, extensions = c('Buttons','Responsive'),options = list(dom='Bit',deferRender=TRUE, scroller=TRUE, buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('vocabularies'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
+   DT::datatable(orgs, extensions = c('Buttons','Responsive'),options = list(dom='Bfit',deferRender=TRUE, scroller=TRUE, buttons = list(list(extend = 'csv',text="Download CSV", filename= paste0('vocabularies'))),"pageLength" = 5000,scrollY='55vh'), rownames=FALSE, escape=FALSE, selection="single"
    )
  })
 
