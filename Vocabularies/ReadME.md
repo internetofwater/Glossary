@@ -124,4 +124,5 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |   MT  |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
 | Joseph Brewer |   TX  |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
 |               |  CO   |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
+|               |  CO   |             | No         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
 
