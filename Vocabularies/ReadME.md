@@ -1,6 +1,6 @@
 # IOW Glossary Text Extraction Technique Description
 
-The Internet of Water (IOW) Glossary project aims to produce a vocabulary management system where terms are ingested into a [SKOS](https://www.w3.org/2004/02/skos/)-compliant RDF, and semantic links (skos:related and skos:exactMatch) are drawn between terms.  This is accomplished by collecting water use terms and their definition as used by US federal and state agencies.  Results can be viewed using a shiny app hosted by RStudio's free cloud hosting service here: https://internetofwater.shinyapps.io/Glossary/#section-main-term-browser
+The Internet of Water (IOW) Glossary project aims to produce a vocabulary management system where terms are ingested into a [SKOS](https://www.w3.org/2004/02/skos/)-compliant RDF, and semantic links (skos:related and skos:exactMatch) are drawn between terms.  This is accomplished by collecting water use terms and their definition as used by US federal and state agencies.  Results can be viewed using a shiny app hosted by RStudio's free cloud hosting service here: https://internetofwater.shinyapps.io/WaterTerminologyCollection/
 
 This ReadME details the process of gathering and processing glossary term and definition data.  Please note, all glossary information is needed.  The information given here is for glossary info that is publicly available online and accessible via html format.  If glossary info is not available in html format (e.g. pdf, inaccessible, etc), we still need that glossary info and users will have to use an alterative text extraction technique other than the one outlined here within this ReadME file.
 
@@ -123,4 +123,6 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  MT   |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |   MT  |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
 | Joseph Brewer |   TX  |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
+|               |  CO   |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
+|               |  CO   |             | No         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
 
