@@ -270,7 +270,7 @@ output$table = DT::renderDataTable({
   #D<-data%>%as.data.frame()%>%distinct(uri,.keep_all=TRUE)
   DT::datatable(d(), options = list(columnDefs = list(list(targets = c(0,4,5,6,7), visible = FALSE)), extensions = c('Buttons','FixedHeader','Scroller'),
     dom='Blfrtip', buttons = list(list(extend = 'csv',text="Download Current Table as CSV", filename= 'main_table')),bPaginate=TRUE, scrollY='55vh',scrollX=FALSE,searchHighlight = TRUE, scroller=TRUE, deferRender=TRUE,
-    pageLength = 1000, lengthMenu = list(c(100,-1),list('100','All'))), rownames=FALSE, escape=FALSE, selection="single", filter="none"
+    pageLength = 1000, lengthMenu = list(c(1000,-1),list('1,000','All'))), rownames=FALSE, escape=FALSE, selection="single", filter="none"
   )
 }, server=TRUE
 
