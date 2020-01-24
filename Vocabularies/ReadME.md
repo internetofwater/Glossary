@@ -97,7 +97,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | AZ    | az-deq      | Yes        | Yes   |https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | Yes        | Yes   |https://new.azwater.gov/dictionary  |
 | Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes   |https://new.azwater.gov/permitting-wells/terminology |
-| Ryan James  | AZ    | az-dwr-amdsbt | Yes      | No    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
+| Ryan James  | AZ    | az-dwr-amdsbt | Yes      | Yes    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
 | Ryan James  | CA    | ca-wb-wwgd  | Yes        |Yes     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 | Ryan James  | CO    | co-cdr-g    | Yes        | Yes   |https://www.coloradoriverdistrict.org/water-glossary/ |
 | Ryan James  | ID    | id-dwr-wro  | Yes        | Yes   |https://idwr.idaho.gov/water-rights/overview.html |
