@@ -113,7 +113,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |    OR   |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
 |             |    OR   |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
-|             |    TX   |	          | No	   |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
+| Joseph Brewer |  TX   |	tx-wdb-g  | Yes	   | No    |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
 | Joseph Brewer |  TX   | tx-pwd-g  | Yes	   | Yes   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
 | Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
