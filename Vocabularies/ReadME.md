@@ -106,10 +106,10 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | Yes    |https://www.owrb.ok.gov/util/glossary.php |
-| Joseph Brewer | ID  |	id-idwr-t   | Yes        | Yes    |https://idwr.idaho.gov/terminology.html |
+| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | Yes   |https://www.owrb.ok.gov/util/glossary.php |
+| Joseph Brewer | ID  |	id-idwr-t   | Yes        | Yes   |https://idwr.idaho.gov/terminology.html |
 | Joseph Brewer | OR  |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
-|             |   OR    |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
+| Joseph Brewer | OR  |	or-sos-d    | Yes        | No    |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
 |             |    OR   |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
 |             |    OR   |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
