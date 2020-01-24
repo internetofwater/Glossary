@@ -106,18 +106,18 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | UT    | ut-udwr-g   | Yes        | Yes   |https://waterrights.utah.gov/wrinfo/glossary.asp |
 | Ryan James  | WY    | wy-wrri-hg  | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-ht.html |
 | Ryan James  | WY    | wy-wrri-wqg | Yes        | Yes   |http://library.wrds.uwyo.edu/glossary/wrs/wrs01/wrs01-wqt.html |
-| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | Yes    |https://www.owrb.ok.gov/util/glossary.php |
-| Joseph Brewer | ID  |	id-idwr-t   | Yes        | Yes    |https://idwr.idaho.gov/terminology.html |
+| Joseph Brewer | OK  | ok-owrb-g	  | Yes        | Yes   |https://www.owrb.ok.gov/util/glossary.php |
+| Joseph Brewer | ID  |	id-idwr-t   | Yes        | Yes   |https://idwr.idaho.gov/terminology.html |
 | Joseph Brewer | OR  |	            | No	       |       |https://www.oregon.gov/owrd/WRDFormsPDF/wris_code_key.pdf |
-|             |   OR    |	            | No	       |       |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
+| Joseph Brewer | OR  |	or-sos-d    | Yes        | No    |https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=3174 |
 |             |    OR   |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
 |             |    OR   |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
-|             |    TX   |	            | No	       |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
-| Joseph Brewer |  TX   | tx-pwd-g    | Yes	   | No   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
-| Joseph Brewer |  TX   |	tx-ceq-t&d  | No	       |       |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
-|             |    TX   |	            | No	       |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
-|             |    SD   |	            |	No         |       |https://denr.sd.gov/des/wr/dictionary.aspx |
+| Joseph Brewer |  TX   |	tx-wdb-g  | Yes	   | No    |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
+| Joseph Brewer |  TX   | tx-pwd-g  | Yes	   | Yes   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
+| Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
+|             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
+| Joseph Brewer |  SD   |	sd-denr-d   |	Yes        | Yes   |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
 | Joseph Brewer |  MT   |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
