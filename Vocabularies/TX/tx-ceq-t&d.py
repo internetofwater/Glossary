@@ -1,6 +1,6 @@
 #Date Created: 01/03/2020
 #Purpose: To extract text from html file (website) and export to xlsx file.
-#Notes: # TCEQ terms & definitions
+#Notes: # TCEQ terms & definitions.
 
 
 
