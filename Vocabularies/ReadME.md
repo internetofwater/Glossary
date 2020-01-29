@@ -97,7 +97,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Ryan James  | AZ    | az-deq      | Yes        | Yes   |https://legacy.azdeq.gov/function/help/glossary.html |
 | Ryan James  | AZ    | az-dwr      | Yes        | Yes   |https://new.azwater.gov/dictionary  |
 | Ryan James  | AZ    | az-dwr-gpw  | Yes        | Yes   |https://new.azwater.gov/permitting-wells/terminology |
-| Ryan James  | AZ    | az-dwr-amdsbt | Yes      | No    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
+| Ryan James  | AZ    | az-dwr-amdsbt | Yes      | Yes    |http://www.azwater.gov/querycenter/query.aspx?qrysessionid=8CF17C8B1CB98E14E0534C64850A39FA | 
 | Ryan James  | CA    | ca-wb-wwgd  | Yes        |Yes     | https://www.waterboards.ca.gov/publications_forms/available_documents/water_words.html |
 | Ryan James  | CO    | co-cdr-g    | Yes        | Yes   |https://www.coloradoriverdistrict.org/water-glossary/ |
 | Ryan James  | ID    | id-dwr-wro  | Yes        | Yes   |https://idwr.idaho.gov/water-rights/overview.html |
@@ -113,7 +113,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |    OR   |	            | No	       |       |https://www.thefreshwatertrust.org/glossary-of-terms/ |
 |             |    OR   |	            | No	       |       |https://oregonexplorer.info/content/glossary-wetlands-terms?topic=4138&ptopic=98 |
 |             |   WA    |	            | No	       |       |https://ecology.wa.gov/Water-Shorelines/Water-supply/Water-availability |
-|             |    TX   |	          | No	   |       |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
+| Joseph Brewer |  TX   |	tx-wdb-g  | Yes	   | No    |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
 | Joseph Brewer |  TX   | tx-pwd-g  | Yes	   | Yes   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
 | Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
@@ -125,4 +125,8 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |   TX  |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
 |               |  CO   |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
 |               |  CO   |             | No         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
+| Joseph Brewer |  ID   |             | No         | No    | https://www.deq.idaho.gov/glossary/
+| Joseph Brewer |  OR-USGS |          | No         | No    | https://or.water.usgs.gov/projs_dir/willgw/glossary.html
+| Joseph Brewer |  WA   |             | No         | No    | https://www.epermitting.wa.gov/site/alias__resourcecenter/2485/default.aspx
+| Joseph Brewer | CO    |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
 
