@@ -12,7 +12,7 @@ import pandas as pd # parsing data and creating dataframes
 import os
 import openpyxl
 
-workingDir="/Users/joseph/Desktop/WSWC/IoW/Vocabularies/OK/"
+workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/OK/"
 os.chdir(workingDir)
 
 
@@ -34,6 +34,7 @@ if result.status_code == 200:  # a valuve of 200 indicates yes, a 403 forbidden 
     print("Success. Website is accessible.")
 
     neededclass = soup.find(class_="centercontent")  # OWRB specific. Finding all 'p' tag items only within the class_"entry-content"
+    test = neededclass.find_all('p')
     for p in neededclass.find_all('p'):  # change tag information here
         lst1.append(p.text)  # return text only and append empty list with findings
 

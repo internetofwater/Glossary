@@ -12,7 +12,7 @@ import pandas as pd # parsing data and creating dataframes
 import os
 import openpyxl
 
-workingDir="/Users/joseph/Desktop/WSWC/IoW/Vocabularies/ID/"
+workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/ID/"
 os.chdir(workingDir)
 
 
