@@ -9,7 +9,7 @@ from docx import *
 import os
 import pandas as pd
 
-workingDir="/Users/joseph/Desktop/WSWC/IoW/Vocabularies/MT/"
+workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/MT/"
 os.chdir(workingDir)
 
 
