@@ -43,7 +43,7 @@ for i, row in data.iterrows():
 ############################################################################
 # Strip leading and trailing whitespace
 stripped = pd.Series(glossary['Term'].values)  # Convert Keyword column to Pandas Series
-stripped = stripped.str.strip()  # Use Series.str.strip() to strip leading and trailing whitespace
+stripped = stripped.str.strip()  # Use Series.str.strip() to strip leading/trailing whitespace
 glossary = glossary.assign(Term=stripped)
 
 stripped = pd.Series(glossary['Definition'].values)
