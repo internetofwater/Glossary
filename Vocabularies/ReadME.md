@@ -120,7 +120,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  SD   |	sd-denr-d   |	Yes        | Yes   |https://denr.sd.gov/des/wr/dictionary.aspx |
 |             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
-| Joseph Brewer |  MT   |             | No         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
+| Joseph Brewer |  MT   |  mt-dnrc-wc_g           | Yes         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |   MT  | mt-dnrc-swp_g  | Yes         |  Yes   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
 | Joseph Brewer |   TX  |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
 |               |  CO   |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
