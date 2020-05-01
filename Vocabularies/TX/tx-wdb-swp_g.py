@@ -1,4 +1,4 @@
-#Date Created: 03/25/2020
+#Date Created: 04/28/2020
 #Purpose: To extract text from html file (website) and export to xlsx file.
 #Notes: # MT DNRC State Water Plan glossary.
 
@@ -9,13 +9,13 @@ from docx import *
 import os
 import pandas as pd
 
-workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/MT/"
+workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/TX/"
 os.chdir(workingDir)
 
 
 #Retrieving Document
 ############################################################################
-document = Document('2015_mt-water-plan.docx')
+document = Document('2017_tx_twdb_swp_glossary.docx')
 
 
 #Storage Variables
@@ -31,7 +31,7 @@ glossary = pd.DataFrame(columns=['Term', 'Definition'])
 for para in document.paragraphs:
     data = data.append({'glossary':para.text}, ignore_index=True) # Append text to data DataFrame
 
-data.drop(72, inplace=True)
+
 
 # Iterate over rows in data DataFrame and split on ' – '
 for i, row in data.iterrows():
@@ -43,7 +43,7 @@ for i, row in data.iterrows():
 ############################################################################
 # Strip leading and trailing whitespace
 stripped = pd.Series(glossary['Term'].values)  # Convert Keyword column to Pandas Series
-stripped = stripped.str.strip()  # Use Series.str.strip() to strip leading and trailing whitespace
+stripped = stripped.str.strip()  # Use Series.str.strip() to strip leading/trailing whitespace
 glossary = glossary.assign(Term=stripped)
 
 stripped = pd.Series(glossary['Definition'].values)
@@ -57,7 +57,7 @@ print("Exporting data to xlsx.")
 
 #export DataFrame to xlsx
 
-glossary.to_excel('mt-dnrc-g.xlsx')
+glossary.to_excel('tx-wdb-swp_g.xlsx')
 
 
 
