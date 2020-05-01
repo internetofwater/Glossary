@@ -122,7 +122,7 @@ Please update the below State Agency Assignments table that your assignment is c
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
 | Joseph Brewer |  MT   |  mt-dnrc-wc_g           | Yes         |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |   MT  | mt-dnrc-swp_g  | Yes         |  Yes   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
-| Joseph Brewer |   TX  |             | No         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
+| Joseph Brewer |   TX  |  tx-wdb-swp_g           | Yes         |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
 |               |  CO   |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
 |               |  CO   |             | No         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
 | Joseph Brewer |  ID   | id-deq-g    | Yes         | No    | https://www.deq.idaho.gov/glossary/
