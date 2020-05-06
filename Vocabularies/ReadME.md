@@ -118,7 +118,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 | Joseph Brewer |  SD   |	sd-denr-d   |	Yes        | Yes   |https://denr.sd.gov/des/wr/dictionary.aspx |
-|             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
+| Kyle Onda     |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
 | Joseph Brewer |  MT   |  mt-dnrc-wc_g    | Yes    |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |   MT  | mt-dnrc-swp_g    |  Yes   |  Yes   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
