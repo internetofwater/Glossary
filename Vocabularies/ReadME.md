@@ -118,15 +118,15 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
 |             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 | Joseph Brewer |  SD   |	sd-denr-d   |	Yes        | Yes   |https://denr.sd.gov/des/wr/dictionary.aspx |
-|             |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
+| Kyle Onda     |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
 | Joseph Brewer |  MT   |  mt-dnrc-wc_g    | Yes    |  No   | http://dnrc.mt.gov/divisions/water/management/docs/training-and-education/water-commissioner/2016_water_commissioner_glossary.pdf
 | Joseph Brewer |   MT  | mt-dnrc-swp_g    |  Yes   |  Yes   | http://dnrc.mt.gov/divisions/water/management/docs/state-water-plan/2015_mt_water_plan.pdf
 | Joseph Brewer |   TX  |  tx-wdb-swp_g    |  Yes   |   No  | https://www.twdb.texas.gov/waterplanning/swp/2017/chapters/10-SWP17-GLOSSARY-APPENDICES.pdf
 | Joseph Brewer |  CO   | co-drn-g2wr_g    | Yes         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
-|               |  CO   |             | No         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
-| Joseph Brewer |  ID   | id-deq-g    | Yes         | No    | https://www.deq.idaho.gov/glossary/
+| Joseph Brewer |  CO   | co-cfwe-cwl_g    | Yes         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
+| Joseph Brewer |  ID   | id-deq-g    | Yes        | No    | https://www.deq.idaho.gov/glossary/
 | Joseph Brewer |  OR-USGS |          | No         | No    | https://or.water.usgs.gov/projs_dir/willgw/glossary.html
-| Joseph Brewer |  WA   |             | No         | No    | https://www.epermitting.wa.gov/site/alias__resourcecenter/2485/default.aspx
-| Joseph Brewer | CO    |             | No         | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
+| Joseph Brewer |  WA   |  wa-oria-g  | Yes         | No    | https://www.epermitting.wa.gov/site/alias__resourcecenter/2485/default.aspx
+| Joseph Brewer | CO    | co-soc-g    | Yes        | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
 
