@@ -126,7 +126,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  CO   | co-drn-g2wr_g    | Yes         | No    | https://www.colorado.gov/pacific/sites/default/files/wellpermitguide_1.pdf
 | Joseph Brewer |  CO   | co-cfwe-cwl_g    | Yes         | No    |  https://www.courts.state.co.us/userfiles/file/Court_Probation/Water_Courts/cfwe%20Water%20Law%20Guide%20Third%20Edition%20Final%20June%2016%202009.pdf
 | Joseph Brewer |  ID   | id-deq-g    | Yes        | No    | https://www.deq.idaho.gov/glossary/
-| Joseph Brewer |  OR-USGS |          | No         | No    | https://or.water.usgs.gov/projs_dir/willgw/glossary.html
+| Joseph Brewer |  OR-USGS | or-or_usgs-g         | Yes         | No    | https://or.water.usgs.gov/projs_dir/willgw/glossary.html
 | Joseph Brewer |  WA   |  wa-oria-g  | Yes         | No    | https://www.epermitting.wa.gov/site/alias__resourcecenter/2485/default.aspx
 | Joseph Brewer | CO    | co-soc-g    | Yes        | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
 
