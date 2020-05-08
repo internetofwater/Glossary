@@ -1,39 +1,73 @@
-import requests
-import PyPDF2
-import io
+# Title: Texas - Commission on Environmental Quality - Glossary of Environmental Terms
+# Created by: Joseph Brewer, WSWC
+# Date Created: 05/8/2020
+# Purpose: To extract text from html file (website) and export to xlsx file.
+# Notes:
+
+
+#Needed Modules
+############################################################################
+from docx import *
+import os
 import pandas as pd
+import openpyxl
+from openpyxl.utils.dataframe import dataframe_to_rows
+
+workingDir="/Users/augustus/Desktop/WSWC/IoW/Vocabularies/TX/"
+os.chdir(workingDir)
 
 
-url = "https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf"
-file = '/Users/joseph/Desktop/2016_water_commissioner_glossary.pdf'
-
-result = requests.get(url)
-pdf = io.BytesIO(result.content)
+#Retrieving Document
+############################################################################
+document = Document('tx-ceq-g.docx')
 
 
+#Storage Variables
+############################################################################
+# Create empty dataframes
+data = pd.DataFrame(columns=['glossary'])
+glossary = pd.DataFrame(columns=['Term', 'Definition'])
 
 
-reader = PyPDF2.PdfFileReader(pdf)
-print(reader.numPages)
-
-num_pages = reader.numPages
-count = 0
-text =""
-contents = ""
-
-while count < num_pages:
-    pageObj = reader.getPage(count)
-    count += 1
-    text += pageObj.extractText()
-    print('pause')
+#Gathering Data
+###########################################################################
+# Iterate over paragraghs.  Paragraphs seperated by columns
+for para in document.paragraphs:
+    data = data.append({'glossary':para.text}, ignore_index=True) # Append text to data DataFrame
 
 
 
-print(text)
+# Iterate over rows in data DataFrame and split on ' – '
+for i, row in data.iterrows():
+    x = row['glossary'].split(' – ')
+    if len(x) == 2:
+        glossary = glossary.append({'Term':x[0], 'Definition':x[1]}, ignore_index=True) # Append split values to glossary dataframe
+                                                                                        # with positional arguments
+    else:
+        print(x)
+
+# Cleaning Text
+############################################################################
+# Strip leading and trailing whitespace
+stripped = pd.Series(glossary['Term'].values)  # Convert Keyword column to Pandas Series
+stripped = stripped.str.strip() # Use Series.str.strip() to strip leading/trailing whitespace
+#stripped = stripped.str.capitalize() # Use Series.str.capitalize to capitalize first character of string
+glossary = glossary.assign(Term=stripped)
+
+stripped = pd.Series(glossary['Definition'].values)
+stripped = stripped.str.strip()
+#stripped = stripped.str.capitalize()
+glossary = glossary.assign(Definition=stripped)
 
 
-df = pd.DataFrame(contents)
+# Exporting Text to xlsx file.
+############################################################################
+print("Exporting data to xlsx.")
+
+
+#export DataFrame to xlsx
+glossary.to_excel('tx-ceq-g.xlsx')  #ToDo: un-comment to run again
+
 
 print('done')
 
-#Œ
