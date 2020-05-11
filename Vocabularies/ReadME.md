@@ -116,7 +116,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  TX   |	tx-wdb-g  | Yes	   | No    |http://www.twdb.texas.gov/waterplanning/data/glossary.asp |
 | Joseph Brewer |  TX   | tx-pwd-g  | Yes	   | Yes   |https://tpwd.texas.gov/landwater/water/habitats/rivers/glossary.phtml |
 | Joseph Brewer |  TX   |	tx-ceq-t&d  | Yes	   | Yes   |https://www.tceq.texas.gov/remediation/superfund/glossary.html |
-|             |    TX   |	            | No	   |       | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
+| Joseph Brewer |    TX | tx-ceq-g    | Yes	   | No      | https://www.tceq.texas.gov/assets/public/comm_exec/pubs/rg/rg360/rg36013/glossary.pdf |
 | Joseph Brewer |  SD   |	sd-denr-d   |	Yes        | Yes   |https://denr.sd.gov/des/wr/dictionary.aspx |
 | Kyle Onda     |USBR   |  usbr-rlg   | Yes        |  Yes     |https://www.usbr.gov/library/glossary/ |
 |             |USGS   |             | Yes        |       |https://www.usgs.gov/faqs/why-does-usgs-use-spelling-gage-instead-gauge?qt-news_science_products=0#qt-news_science_products |
@@ -129,4 +129,6 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer |  OR-USGS | or-or_usgs-g         | Yes         | No    | https://or.water.usgs.gov/projs_dir/willgw/glossary.html
 | Joseph Brewer |  WA   |  wa-oria-g  | Yes         | No    | https://www.epermitting.wa.gov/site/alias__resourcecenter/2485/default.aspx
 | Joseph Brewer | CO    | co-soc-g    | Yes        | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
-
+| Joseph Brewer | NM    | nm-wrri-g   | Yes.       | No    | https://nmwrri.nmsu.edu/nmdswb-stocks-and-flows/
+| Joseph Brewer | NE    |             | No         | No.   | https://nednr.nebraska.gov/insight/terminology.html
+ 
