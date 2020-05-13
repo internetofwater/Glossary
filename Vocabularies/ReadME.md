@@ -131,4 +131,4 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer | CO    | co-soc-g    | Yes        | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
 | Joseph Brewer | NM    | nm-wrri-g   | Yes.       | No    | https://nmwrri.nmsu.edu/nmdswb-stocks-and-flows/
 | Joseph Brewer | NE    | ne-dnr-insight_t   | Yes         | No   | https://nednr.nebraska.gov/insight/terminology.html
- 
+| Joseph Brewer | ND    |       | No   | No   | https://www.swc.nd.gov/pdfs/water_reference_guide.pdf
