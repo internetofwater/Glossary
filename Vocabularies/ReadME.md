@@ -131,7 +131,7 @@ Please update the below State Agency Assignments table that your assignment is c
 | Joseph Brewer | CO    | co-soc-g    | Yes        | No    | https://www.colorado.gov/pacific/sites/default/files/Glossary%20of%20Water%20Terms.doc
 | Joseph Brewer | NM    | nm-wrri-g   | Yes.       | No    | https://nmwrri.nmsu.edu/nmdswb-stocks-and-flows/
 | Joseph Brewer | NE    | ne-dnr-insight_t   | Yes         | No   | https://nednr.nebraska.gov/insight/terminology.html
-| Joseph Brewer | ND    |       | No   | No   | https://www.swc.nd.gov/pdfs/water_reference_guide.pdf
-| Joseph Brewer | KS  |        | No.   | No. | https://agriculture.ks.gov/docs/default-source/dwr-ws-fact-sheets/dam-terminology.pdf?sfvrsn=47b34150_6
-| Joseph Brewer | KS | | No | No | https://agriculture.ks.gov/docs/default-source/doc---documents/kansas-river-stream-corridor-management-guide.pdf?sfvrsn=b27a5361_2
+| Joseph Brewer | ND    | nd-swc-rg_ww    | Yes   | Np   | https://www.swc.nd.gov/pdfs/water_reference_guide.pdf
+| Joseph Brewer | KS  | ks-doa-dt       | Yes   | No. | https://agriculture.ks.gov/docs/default-source/dwr-ws-fact-sheets/dam-terminology.pdf?sfvrsn=47b34150_6
+| Joseph Brewer | KS | ks-doa-rscmg_g | Yes | No | https://agriculture.ks.gov/docs/default-source/doc---documents/kansas-river-stream-corridor-management-guide.pdf?sfvrsn=b27a5361_2
 |Joseph Brewer | AK | | No | No | https://dec.alaska.gov/media/11575/epa-cwa-glossary-of-terms.pdf
